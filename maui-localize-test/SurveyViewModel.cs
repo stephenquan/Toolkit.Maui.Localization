@@ -11,6 +11,12 @@ public partial class SurveyViewModel : ObservableObject
     private IDispatcherTimer _timer;
 
     public CultureInfo Culture => CultureInfo.CurrentCulture;
+
+    public string TITLE_SURVEY => Resources.Strings.AppStrings.TITLE_SURVEY;
+    public string LBL_DATE_TIME => Resources.Strings.AppStrings.LBL_DATE_TIME;
+    public string LBL_CURRENCY => Resources.Strings.AppStrings.LBL_CURRENCY;
+    public string LBL_SELECT_FRUITS => Resources.Strings.AppStrings.LBL_SELECT_FRUITS;
+
     public DateTime CurrentDate => DateTime.Now;
 
     [ObservableProperty]
@@ -45,8 +51,17 @@ public partial class SurveyViewModel : ObservableObject
         WeakReferenceMessenger.Default.Register<CultureInfo>(this, (r, m) =>
         {
             OnPropertyChanged(nameof(Culture));
+            OnPropertyChanged(nameof(TITLE_SURVEY));
+            OnPropertyChanged(nameof(LBL_DATE_TIME));
+            OnPropertyChanged(nameof(LBL_CURRENCY));
+            OnPropertyChanged(nameof(LBL_SELECT_FRUITS));
             OnPropertyChanged(nameof(CurrentDate));
             OnPropertyChanged(nameof(CurrencyAmount));
         });
+    }
+
+    ~SurveyViewModel()
+    {
+        WeakReferenceMessenger.Default.Unregister<CultureInfo>(this);
     }
 }

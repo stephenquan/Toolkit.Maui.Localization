@@ -129,6 +129,12 @@
   <data name="LBL_CHERRIES" xml:space="preserve">
     <value>Cherries</value>
   </data>
+  <data name="LBL_CURRENCY" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="LBL_DATE_TIME" xml:space="preserve">
+    <value>Date/Time</value>
+  </data>
   <data name="LBL_ORANGES" xml:space="preserve">
     <value>Oranges</value>
   </data>
@@ -137,6 +143,9 @@
   </data>
   <data name="LBL_PINEAPPLES" xml:space="preserve">
     <value>Pineapples</value>
+  </data>
+  <data name="LBL_SELECT_FRUITS" xml:space="preserve">
+    <value>Select Fruits</value>
   </data>
   <data name="LBL_WELCOME" xml:space="preserve">
     <value>Welcome to .NET Multi-platform App UI</value>
@@ -155,5 +164,8 @@
   </data>
   <data name="TITLE_SELECT_LANGUAGE" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="TITLE_SURVEY" xml:space="preserve">
+    <value>Survey</value>
   </data>
 </root>

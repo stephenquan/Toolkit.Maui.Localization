@@ -129,6 +129,12 @@
   <data name="LBL_CHERRIES" xml:space="preserve">
     <value>櫻桃</value>
   </data>
+  <data name="LBL_CURRENCY" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="LBL_DATE_TIME" xml:space="preserve">
+    <value>日期/时间</value>
+  </data>
   <data name="LBL_ORANGES" xml:space="preserve">
     <value>橙子</value>
   </data>
@@ -137,6 +143,9 @@
   </data>
   <data name="LBL_PINEAPPLES" xml:space="preserve">
     <value>菠蘿</value>
+  </data>
+  <data name="LBL_SELECT_FRUITS" xml:space="preserve">
+    <value>选择水果</value>
   </data>
   <data name="LBL_WELCOME" xml:space="preserve">
     <value>欢迎使用 .NET 多平台应用程序界面</value>
@@ -155,5 +164,8 @@
   </data>
   <data name="TITLE_SELECT_LANGUAGE" xml:space="preserve">
     <value>选择语言</value>
+  </data>
+  <data name="TITLE_SURVEY_PAGE" xml:space="preserve">
+    <value>调查页面</value>
   </data>
 </root>

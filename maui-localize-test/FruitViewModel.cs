@@ -22,4 +22,9 @@ public partial class FruitViewModel : ObservableObject
             OnPropertyChanged(nameof(DisplayName));
         });
     }
+
+    ~FruitViewModel()
+    {
+        WeakReferenceMessenger.Default.Unregister<CultureInfo>(this);
+    }
 }

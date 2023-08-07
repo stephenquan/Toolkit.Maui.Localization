@@ -2,28 +2,31 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:maui_localize_test"
-             x:Class="maui_localize_test.SurveyPage"
-             Title="FormPage">
+             x:Class="maui_localize_test.SurveyPage" >
 
     <ContentPage.BindingContext>
         <local:SurveyViewModel />
     </ContentPage.BindingContext>
+
+    <ContentPage.Title>
+        <Binding Path="TITLE_SURVEY" />
+    </ContentPage.Title>
     
     <VerticalStackLayout>
 
-        <Label Text="Date/Time"
+        <Label Text="{Binding LBL_DATE_TIME}"
                Margin="10, 10, 0, 0" />
 
         <Label Text="{Binding CurrentDate}"
                Margin="10, 10, 0, 0" />
 
-        <Label Text="Currency"
+        <Label Text="{Binding LBL_CURRENCY}"
                Margin="10, 20, 0, 0" />
         
         <Label Text="{Binding CurrencyAmount,StringFormat='{0:C}'}"
                Margin="10, 10, 0, 0" />
 
-        <Label Text="Fruits"
+        <Label Text="{Binding LBL_SELECT_FRUITS}"
                Margin="10, 20, 0, 0" />
 
         <CollectionView ItemsSource="{Binding Fruits}"

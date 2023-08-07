@@ -47,4 +47,9 @@ public partial class LanguageViewModel : ObservableObject
             OnPropertyChanged(nameof(IsChecked));
         });
     }
+
+    ~LanguageViewModel()
+    {
+        WeakReferenceMessenger.Default.Unregister<CultureInfo>(this);
+    }
 }

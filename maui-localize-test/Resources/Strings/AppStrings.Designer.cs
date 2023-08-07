@@ -97,6 +97,24 @@ namespace maui_localize_test.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string LBL_CURRENCY {
+            get {
+                return ResourceManager.GetString("LBL_CURRENCY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date/Time.
+        /// </summary>
+        internal static string LBL_DATE_TIME {
+            get {
+                return ResourceManager.GetString("LBL_DATE_TIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oranges.
         /// </summary>
         internal static string LBL_ORANGES {
@@ -120,6 +138,15 @@ namespace maui_localize_test.Resources.Strings {
         internal static string LBL_PINEAPPLES {
             get {
                 return ResourceManager.GetString("LBL_PINEAPPLES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Fruits.
+        /// </summary>
+        internal static string LBL_SELECT_FRUITS {
+            get {
+                return ResourceManager.GetString("LBL_SELECT_FRUITS", resourceCulture);
             }
         }
         
@@ -174,6 +201,15 @@ namespace maui_localize_test.Resources.Strings {
         internal static string TITLE_SELECT_LANGUAGE {
             get {
                 return ResourceManager.GetString("TITLE_SELECT_LANGUAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Survey.
+        /// </summary>
+        internal static string TITLE_SURVEY {
+            get {
+                return ResourceManager.GetString("TITLE_SURVEY", resourceCulture);
             }
         }
     }

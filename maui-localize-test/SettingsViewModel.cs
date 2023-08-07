@@ -48,4 +48,9 @@ public partial class SettingsViewModel : ObservableObject
             OnPropertyChanged(nameof(TITLE_SELECT_LANGUAGE));
         });
     }
+
+    ~SettingsViewModel()
+    {
+        WeakReferenceMessenger.Default.Unregister<CultureInfo>(this);   
+    }
 }
