@@ -9,21 +9,17 @@ namespace maui_localize_ext;
 
 public partial class MainViewModel : ObservableObject
 {
+    [ObservableProperty]
     private IStringLocalizer _localizer = ServiceHelper.GetService<IStringLocalizer<AppStrings>>();
-
-    public string TITLE_MAIN => _localizer["TITLE_MAIN"];
-    public string LBL_HELLO => _localizer["LBL_HELLO"];
-    public string LBL_WELCOME => _localizer["LBL_WELCOME"];
-
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
     private int _counter = 0;
     public string ClickText => Counter switch
     {
-        0 => _localizer["STR_CLICK_ME"],
-        1 => _localizer["STR_CLICKED_1_TIME"],
-        _ => _localizer["STR_CLICKED_N_TIMES", Counter]
+        0 => Localizer["STR_CLICK_ME"],
+        1 => Localizer["STR_CLICKED_1_TIME"],
+        _ => Localizer["STR_CLICKED_N_TIMES", Counter]
     };
 
     [RelayCommand]
@@ -42,9 +38,7 @@ public partial class MainViewModel : ObservableObject
                 return;
             }
             CultureInfo.CurrentUICulture = value;
-            OnPropertyChanged(nameof(TITLE_MAIN));
-            OnPropertyChanged(nameof(LBL_HELLO));
-            OnPropertyChanged(nameof(LBL_WELCOME));
+            OnPropertyChanged(nameof(Localizer));
             OnPropertyChanged(nameof(ClickText));
         }
     }

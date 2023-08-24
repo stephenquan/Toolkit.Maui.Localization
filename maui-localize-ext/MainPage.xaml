@@ -9,7 +9,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Title>
-        <Binding Path="TITLE_MAIN"/>
+        <Binding Path="Localizer[TITLE_MAIN]"/>
     </ContentPage.Title>
 
     <ScrollView>
@@ -25,19 +25,18 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{Binding LBL_HELLO}"
+                Text="{Binding Localizer[LBL_HELLO]}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{Binding LBL_WELCOME}"
+                Text="{Binding Localizer[LBL_WELCOME]}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
-
-
+            
             <Button
                 Text="{Binding ClickText}"
                 SemanticProperties.Hint="Counts the number of times you click"
