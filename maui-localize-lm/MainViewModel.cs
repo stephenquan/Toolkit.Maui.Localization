@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using maui_localize_lm.Resources.Strings;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -38,8 +37,6 @@ public partial class MainViewModel : ObservableObject
 
     public MainViewModel()
     {
-        LM.SetLocalizer<AppStrings>();
-        LM.SetExtraLocalizer<AppStrings>("ExtraStrings");
         LM.CultureChanged += LM_CultureChanged;
     }
 
