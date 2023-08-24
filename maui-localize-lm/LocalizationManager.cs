@@ -11,6 +11,8 @@ public partial class LocalizationManager : ObservableObject
 
     public event EventHandler CultureChanged;
 
+    public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+
     private IStringLocalizer _localizer;
 
     public void SetLocalizer<T>()
@@ -75,6 +77,8 @@ public partial class LocalizationManager : ObservableObject
                 return;
             }
             CultureInfo.CurrentUICulture = value;
+            OnPropertyChanged(nameof(Culture));
+            OnPropertyChanged(nameof(FlowDirection));
             OnPropertyChanged("Item");
             CultureChanged?.Invoke(this, EventArgs.Empty);
         }

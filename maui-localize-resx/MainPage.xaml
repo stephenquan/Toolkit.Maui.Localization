@@ -60,6 +60,11 @@
                              HeightRequest="64"
                              Clicked="OnLanguageClicked"
                              CommandParameter="zh-CN"/>
+                <ImageButton Source="flag_ar.png"
+                             WidthRequest="64"
+                             HeightRequest="64"
+                             Clicked="OnLanguageClicked"
+                             CommandParameter="ar-AR"/>
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

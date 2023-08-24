@@ -23,6 +23,9 @@ public partial class MainPage : ContentPage
     {
         string localeName = ((ImageButton)sender).CommandParameter.ToString();
         CultureInfo.CurrentUICulture = new CultureInfo(localeName);
+        FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
+            ? FlowDirection.RightToLeft
+            : FlowDirection.LeftToRight;
         Title = AppStrings.TITLE_MAIN;
         HelloLbl.Text = AppStrings.LBL_HELLO;
         WelcomeLbl.Text = AppStrings.LBL_WELCOME;

@@ -32,7 +32,8 @@ public partial class MainViewModel : ObservableObject
         new CultureInfo("en-US"),
         new CultureInfo("fr-FR"),
         new CultureInfo("de-DE"),
-        new CultureInfo("zh-CN")
+        new CultureInfo("zh-CN"),
+        new CultureInfo("ar-SA"),
     };
 
     public MainViewModel()

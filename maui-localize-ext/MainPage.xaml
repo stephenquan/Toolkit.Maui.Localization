@@ -12,6 +12,10 @@
         <Binding Path="Localizer[TITLE_MAIN]"/>
     </ContentPage.Title>
 
+    <ContentPage.FlowDirection>
+        <Binding Path="FlowDirection"/>
+    </ContentPage.FlowDirection>
+
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"

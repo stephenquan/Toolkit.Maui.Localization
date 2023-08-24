@@ -11,6 +11,8 @@ public partial class MainViewModel : ObservableObject
     public string LBL_HELLO => Resources.Strings.AppStrings.LBL_HELLO;
     public string LBL_WELCOME => Resources.Strings.AppStrings.LBL_WELCOME;
 
+    public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
     private int _counter = 0;
@@ -40,6 +42,7 @@ public partial class MainViewModel : ObservableObject
             OnPropertyChanged(nameof(TITLE_MAIN));
             OnPropertyChanged(nameof(LBL_HELLO));
             OnPropertyChanged(nameof(LBL_WELCOME));
+            OnPropertyChanged(nameof(FlowDirection));
             OnPropertyChanged(nameof(ClickText));
         }
     }
@@ -50,6 +53,7 @@ public partial class MainViewModel : ObservableObject
         new CultureInfo("en-US"),
         new CultureInfo("fr-FR"),
         new CultureInfo("de-DE"),
-        new CultureInfo("zh-CN")
+        new CultureInfo("zh-CN"),
+        new CultureInfo("ar-SA")
     };
 }

@@ -12,6 +12,8 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private IStringLocalizer _localizer = ServiceHelper.GetService<IStringLocalizer<AppStrings>>();
 
+    public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
     private int _counter = 0;
@@ -39,6 +41,7 @@ public partial class MainViewModel : ObservableObject
             }
             CultureInfo.CurrentUICulture = value;
             OnPropertyChanged(nameof(Localizer));
+            OnPropertyChanged(nameof(FlowDirection));
             OnPropertyChanged(nameof(ClickText));
         }
     }
@@ -49,6 +52,7 @@ public partial class MainViewModel : ObservableObject
         new CultureInfo("en-US"),
         new CultureInfo("fr-FR"),
         new CultureInfo("de-DE"),
-        new CultureInfo("zh-CN")
+        new CultureInfo("zh-CN"),
+        new CultureInfo("ar-SA"),
     };
 }
