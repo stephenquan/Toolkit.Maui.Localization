@@ -2,20 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:maui_localize_lm"
-             x:Class="maui_localize_lm.MainPage">
+             x:Class="maui_localize_lm.MainPage"
+             BindingContext="{local:MainViewModel}"
+             Title="{Binding AppStringsLocalizer[TITLE_MAIN]}"
+             FlowDirection="{Binding LM.FlowDirection}">
 
-    <ContentPage.BindingContext>
-        <local:MainViewModel/>
-    </ContentPage.BindingContext>
-
-    <ContentPage.Title>
-        <Binding Path="LM[TITLE_MAIN]"/>
-    </ContentPage.Title>
-
-    <ContentPage.FlowDirection>
-        <Binding Path="LM.FlowDirection"/>
-    </ContentPage.FlowDirection>
-        
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
@@ -29,13 +20,13 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{Binding LM[LBL_HELLO]}"
+                Text="{Binding AppStringsLocalizer[LBL_HELLO]}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{Binding LM[LBL_WELCOME]}"
+                Text="{Binding AppStringsLocalizer[LBL_WELCOME]}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"

@@ -6,8 +6,6 @@ namespace maui_localize_lm
     {
         public App()
         {
-            LocalizationManager.Current.SetLocalizer<AppStrings>();
-
             InitializeComponent();
 
             MainPage = new AppShell();
