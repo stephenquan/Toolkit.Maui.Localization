@@ -4,9 +4,9 @@
              xmlns:local="clr-namespace:maui_localize_lm"
              x:Class="maui_localize_lm.MainPage"
              BindingContext="{local:MainViewModel}"
-             Title="{Binding AppStringsLocalizer[TITLE_MAIN]}"
-             FlowDirection="{Binding LM.FlowDirection}">
-
+             Title="{Binding [TITLE_MAIN],Source={x:Static local:LocalizationManager.Current}}"
+             FlowDirection="{Binding FlowDirection,Source={x:Static local:LocalizationManager.Current}}">
+    
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
@@ -20,13 +20,13 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{Binding AppStringsLocalizer[LBL_HELLO]}"
+                Text="{Binding [LBL_HELLO],Source={x:Static local:LocalizationManager.Current}}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{Binding AppStringsLocalizer[LBL_WELCOME]}"
+                Text="{Binding [LBL_WELCOME],Source={x:Static local:LocalizationManager.Current}}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
@@ -40,7 +40,7 @@
 
             <CollectionView ItemsSource="{Binding Languages}"
                             ItemsLayout="HorizontalList"
-                            SelectedItem="{Binding LM.Culture,Mode=TwoWay}"
+                            SelectedItem="{Binding Culture,Source={x:Static local:LocalizationManager.Current},Mode=TwoWay}"
                             SelectionMode="Single"
                             HorizontalOptions="Center">
                 <CollectionView.ItemTemplate>
