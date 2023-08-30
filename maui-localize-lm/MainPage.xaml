@@ -57,6 +57,10 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
+            <Label
+                Text="{Binding Culture.NativeName,Source={x:Static local:LocalizationManager.Current}}}"
+                HorizontalOptions="Center" />
+            
         </VerticalStackLayout>
     </ScrollView>
 

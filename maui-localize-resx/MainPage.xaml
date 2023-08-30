@@ -67,6 +67,10 @@
                              CommandParameter="ar-AR"/>
             </HorizontalStackLayout>
 
+            <Label
+                x:Name="CultureLbl"
+                HorizontalOptions="Center" />
+
         </VerticalStackLayout>
     </ScrollView>
 

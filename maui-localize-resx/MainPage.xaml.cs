@@ -10,6 +10,8 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
+
+        CultureLbl.Text = CultureInfo.CurrentUICulture.NativeName;
     }
 
     private void OnCounterClicked(object sender, EventArgs e)
@@ -30,6 +32,7 @@ public partial class MainPage : ContentPage
         HelloLbl.Text = AppStrings.LBL_HELLO;
         WelcomeLbl.Text = AppStrings.LBL_WELCOME;
         CounterBtn.Text = GetClickText();
+        CultureLbl.Text = CultureInfo.CurrentUICulture.NativeName;
     }
 
     private string GetClickText() => count switch
