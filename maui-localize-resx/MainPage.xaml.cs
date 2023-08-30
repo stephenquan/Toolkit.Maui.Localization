@@ -24,7 +24,7 @@ public partial class MainPage : ContentPage
     private void OnLanguageClicked(object sender, EventArgs e)
     {
         string localeName = ((ImageButton)sender).CommandParameter.ToString();
-        CultureInfo.CurrentUICulture = new CultureInfo(localeName);
+        CultureInfo.CurrentUICulture = CultureInfo.CurrentCulture = new CultureInfo(localeName);
         FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
             ? FlowDirection.RightToLeft
             : FlowDirection.LeftToRight;

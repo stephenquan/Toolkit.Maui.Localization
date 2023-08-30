@@ -35,7 +35,8 @@ public partial class MainViewModel : ObservableObject
         set
         {
             if (value == null) return;
-            CultureInfo.CurrentUICulture = value;
+            if (value.Name == CultureInfo.CurrentUICulture.Name) return;
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
             OnPropertyChanged(nameof(Culture));
             OnPropertyChanged(nameof(TITLE_MAIN));
             OnPropertyChanged(nameof(LBL_HELLO));

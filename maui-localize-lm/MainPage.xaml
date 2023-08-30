@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:maui_localize_lm"
              x:Class="maui_localize_lm.MainPage"
              BindingContext="{local:MainViewModel}"
-             Title="{Binding [TITLE_MAIN],Source={x:Static local:LocalizationManager.Current}}"
-             FlowDirection="{Binding FlowDirection,Source={x:Static local:LocalizationManager.Current}}">
+             Title="{local:Localize [TITLE_MAIN]}"
+             FlowDirection="{local:Localize FlowDirection}">
     
     <ScrollView>
         <VerticalStackLayout
@@ -20,13 +20,13 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{Binding [LBL_HELLO],Source={x:Static local:LocalizationManager.Current}}"
+                Text="{local:Localize [LBL_HELLO]}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{Binding [LBL_WELCOME],Source={x:Static local:LocalizationManager.Current}}"
+                Text="{local:Localize [LBL_WELCOME]}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
@@ -40,7 +40,7 @@
 
             <CollectionView ItemsSource="{Binding Languages}"
                             ItemsLayout="HorizontalList"
-                            SelectedItem="{Binding Culture,Source={x:Static local:LocalizationManager.Current},Mode=TwoWay}"
+                            SelectedItem="{local:Localize Culture,Mode=TwoWay}"
                             SelectionMode="Single"
                             HorizontalOptions="Center">
                 <CollectionView.ItemTemplate>
@@ -58,7 +58,7 @@
             </CollectionView>
 
             <Label
-                Text="{Binding Culture.NativeName,Source={x:Static local:LocalizationManager.Current}}}"
+                Text="{local:Localize Culture.NativeName}"
                 HorizontalOptions="Center" />
             
         </VerticalStackLayout>

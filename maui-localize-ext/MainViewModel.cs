@@ -35,11 +35,9 @@ public partial class MainViewModel : ObservableObject
         get => CultureInfo.CurrentUICulture;
         set
         {
-            if (value == null)
-            {
-                return;
-            }
-            CultureInfo.CurrentUICulture = value;
+            if (value == null) return;
+            if (value.Name == CultureInfo.CurrentUICulture.Name) return;
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
             OnPropertyChanged(nameof(Culture));
             OnPropertyChanged(nameof(Localizer));
             OnPropertyChanged(nameof(FlowDirection));

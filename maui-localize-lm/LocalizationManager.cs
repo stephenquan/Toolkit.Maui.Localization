@@ -32,11 +32,14 @@ public partial class LocalizationManager : ObservableObject
         set
         {
             if (value == null) return;
-            CultureInfo.CurrentUICulture = value;
+            if (value.Name == CultureInfo.CurrentUICulture.Name) return;
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
             OnPropertyChanged(nameof(Culture));
             OnPropertyChanged(nameof(FlowDirection));
             OnPropertyChanged("Item");
             CultureChanged?.Invoke(this, EventArgs.Empty);
         }
     }
+
+
 }
