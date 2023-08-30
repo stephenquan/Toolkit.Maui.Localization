@@ -40,6 +40,7 @@ public partial class MainViewModel : ObservableObject
                 return;
             }
             CultureInfo.CurrentUICulture = value;
+            OnPropertyChanged(nameof(Culture));
             OnPropertyChanged(nameof(Localizer));
             OnPropertyChanged(nameof(FlowDirection));
             OnPropertyChanged(nameof(ClickText));

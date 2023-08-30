@@ -19,10 +19,7 @@ public partial class MainViewModel : ObservableObject
     };
 
     [RelayCommand]
-    private void ClickMe()
-    {
-        Counter++;
-    }
+    private void ClickMe() => Counter++;
 
     [ObservableProperty]
     private ObservableCollection<CultureInfo> _languages = new ObservableCollection<CultureInfo>()
@@ -34,18 +31,9 @@ public partial class MainViewModel : ObservableObject
         new CultureInfo("ar-SA"),
     };
 
-    public MainViewModel()
-    {
-        LocalizationManager.Current.CultureChanged += LM_CultureChanged;
-    }
+    public MainViewModel() => LocalizationManager.Current.CultureChanged += LM_CultureChanged;
 
-    ~MainViewModel()
-    {
-        LocalizationManager.Current.CultureChanged -= LM_CultureChanged;
-    }
+    ~MainViewModel() => LocalizationManager.Current.CultureChanged -= LM_CultureChanged;
 
-    private void LM_CultureChanged(object sender, EventArgs e)
-    {
-        OnPropertyChanged(nameof(ClickText));
-    }
+    private void LM_CultureChanged(object sender, EventArgs e) => OnPropertyChanged(nameof(ClickText));
 }
