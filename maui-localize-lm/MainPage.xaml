@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:maui_localize_lm"
              x:Class="maui_localize_lm.MainPage"
              BindingContext="{local:MainViewModel}"
-             Title="{local:Localize [TITLE_MAIN]}"
+             Title="{local:Localize TITLE_MAIN}"
              FlowDirection="{local:Localize FlowDirection}">
     
     <ScrollView>
@@ -20,13 +20,13 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{local:Localize [LBL_HELLO]}"
+                Text="{local:Localize LBL_HELLO}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{local:Localize [LBL_WELCOME]}"
+                Text="{local:Localize LBL_WELCOME}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"

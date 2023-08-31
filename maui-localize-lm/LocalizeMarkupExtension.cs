@@ -1,4 +1,6 @@
-﻿namespace maui_localize_lm;
+﻿using System.Text.RegularExpressions;
+
+namespace maui_localize_lm;
 
 [ContentProperty(nameof(Path))]
 public class LocalizeExtension : IMarkupExtension<BindingBase>
@@ -13,5 +15,7 @@ public class LocalizeExtension : IMarkupExtension<BindingBase>
         => (this as IMarkupExtension<BindingBase>).ProvideValue(serviceProvider);
 
     BindingBase IMarkupExtension<BindingBase>.ProvideValue(IServiceProvider serviceProvider)
-        => new Binding(Path, Mode, Converter, ConverterParameter, StringFormat, LocalizationManager.Current);
+        => new Binding(
+            Regex.IsMatch(Path, @"(^FlowDirection$|^Culture\.?)") ? Path : $"[{Path}]",
+            Mode, Converter, ConverterParameter, StringFormat, LocalizationManager.Current);
 }
