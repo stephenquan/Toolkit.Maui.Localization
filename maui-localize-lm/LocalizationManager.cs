@@ -10,9 +10,10 @@ public partial class LocalizationManager : ObservableObject
     public static LocalizationManager Current => _current ??= new LocalizationManager();
     public event EventHandler CultureChanged;
     public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+    [ObservableProperty]
     private IStringLocalizer _localizer;
-    public IStringLocalizer Localizer => _localizer;
-    public IStringLocalizer SetLocalizer<T>() => _localizer = ServiceHelper.GetService<IStringLocalizer<T>>();
+    public IStringLocalizer GetLocalizerService<T>() => ServiceHelper.GetService<IStringLocalizer<T>>();
+    public IStringLocalizer SetLocalizer<T>() => Localizer = GetLocalizerService<T>();
     public CultureInfo Culture
     {
         get => CultureInfo.CurrentUICulture;
