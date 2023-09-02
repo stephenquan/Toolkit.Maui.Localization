@@ -10,12 +10,10 @@ public class LocalizeExtension : IMarkupExtension<BindingBase>
     public IValueConverter Converter { get; set; } = null;
     public string ConverterParameter { get; set; } = null;
     public string StringFormat { get; set; } = null;
-
     public object ProvideValue(IServiceProvider serviceProvider)
         => (this as IMarkupExtension<BindingBase>).ProvideValue(serviceProvider);
-
     BindingBase IMarkupExtension<BindingBase>.ProvideValue(IServiceProvider serviceProvider)
         => new Binding(
-            Regex.IsMatch(Path, @"(^FlowDirection$|^Culture\.?)") ? Path : $"[{Path}]",
+            Regex.IsMatch(Path, @"(^FlowDirection$|^Culture\.?)") ? Path : $"Localizer[{Path}]",
             Mode, Converter, ConverterParameter, StringFormat, LocalizationManager.Current);
 }

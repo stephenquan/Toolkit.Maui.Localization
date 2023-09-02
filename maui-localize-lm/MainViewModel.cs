@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Localization;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -13,9 +14,9 @@ public partial class MainViewModel : ObservableObject
 
     public string ClickText => Counter switch
     {
-        0 => LocalizationManager.Current["STR_CLICK_ME"],
-        1 => LocalizationManager.Current["STR_CLICKED_1_TIME"],
-        _ => LocalizationManager.Current["STR_CLICKED_N_TIMES", Counter]
+        0 => LocalizationManager.Current.Localizer["STR_CLICK_ME"],
+        1 => LocalizationManager.Current.Localizer["STR_CLICKED_1_TIME"],
+        _ => LocalizationManager.Current.Localizer["STR_CLICKED_N_TIMES", Counter]
     };
 
     [RelayCommand]

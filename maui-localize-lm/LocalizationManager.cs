@@ -6,26 +6,13 @@ namespace maui_localize_lm;
 
 public partial class LocalizationManager : ObservableObject
 {
-    private static LocalizationManager _current = new LocalizationManager();
-    public static LocalizationManager Current => _current;
-
+    private static LocalizationManager _current;
+    public static LocalizationManager Current => _current ??= new LocalizationManager();
     public event EventHandler CultureChanged;
-
     public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
-
     private IStringLocalizer _localizer;
-
-    public void SetDefaultLocalizer<T>()
-    {
-        _localizer = ServiceHelper.GetService<IStringLocalizer<T>>();
-    }
-
-    public string this[string name] => _localizer[name];
-
-    public string this[string name, params object[] arguments] => _localizer[name, arguments];
-
-    static public StringLocalizer GetLocalizer<T>() => new StringLocalizer(ServiceHelper.GetService<IStringLocalizer<T>>());
-
+    public IStringLocalizer Localizer => _localizer;
+    public IStringLocalizer SetDefaultLocalizer<T>() => _localizer = ServiceHelper.GetService<IStringLocalizer<T>>();
     public CultureInfo Culture
     {
         get => CultureInfo.CurrentUICulture;
@@ -36,10 +23,8 @@ public partial class LocalizationManager : ObservableObject
             CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
             OnPropertyChanged(nameof(Culture));
             OnPropertyChanged(nameof(FlowDirection));
-            OnPropertyChanged("Item");
+            OnPropertyChanged(nameof(Localizer));
             CultureChanged?.Invoke(this, EventArgs.Empty);
         }
     }
-
-
 }
