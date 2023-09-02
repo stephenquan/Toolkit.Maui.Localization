@@ -2,20 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:maui_localize_mvvm"
-             x:Class="maui_localize_mvvm.MainPage">
+             x:Class="maui_localize_mvvm.MainPage"
+             BindingContext="{local:MainViewModel}"
+             Title="{Binding TITLE_MAIN}"
+             FlowDirection="{Binding FlowDirection}">
     
-    <ContentPage.BindingContext>
-        <local:MainViewModel/>
-    </ContentPage.BindingContext>
-
-    <ContentPage.Title>
-        <Binding Path="TITLE_MAIN"/>
-    </ContentPage.Title>
-
-    <ContentPage.FlowDirection>
-        <Binding Path="FlowDirection"/>
-    </ContentPage.FlowDirection>
-
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
