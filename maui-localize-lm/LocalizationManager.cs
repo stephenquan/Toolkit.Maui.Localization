@@ -12,7 +12,7 @@ public partial class LocalizationManager : ObservableObject
     public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer => _localizer;
-    public IStringLocalizer SetDefaultLocalizer<T>() => _localizer = ServiceHelper.GetService<IStringLocalizer<T>>();
+    public IStringLocalizer SetLocalizer<T>() => _localizer = ServiceHelper.GetService<IStringLocalizer<T>>();
     public CultureInfo Culture
     {
         get => CultureInfo.CurrentUICulture;
