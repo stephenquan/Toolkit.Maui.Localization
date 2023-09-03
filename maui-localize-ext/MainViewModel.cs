@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using maui_localize_ext.Resources.Strings;
 using Microsoft.Extensions.Localization;
-using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace maui_localize_ext;
@@ -25,10 +24,7 @@ public partial class MainViewModel : ObservableObject
     };
 
     [RelayCommand]
-    private void ClickMe()
-    {
-        Counter++;
-    }
+    private void ClickMe() => Counter++;
 
     public CultureInfo Culture
     {
@@ -46,7 +42,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    private ObservableCollection<CultureInfo> _languages = new ObservableCollection<CultureInfo>()
+    private List<CultureInfo> _languages = new List<CultureInfo>()
     {
         new CultureInfo("en-US"),
         new CultureInfo("fr-FR"),

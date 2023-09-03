@@ -10,7 +10,6 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-
         CultureLbl.Text = CultureInfo.CurrentUICulture.NativeName;
     }
 

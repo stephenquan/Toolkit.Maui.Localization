@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.Localization;
-using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace maui_localize_lm;
@@ -23,7 +21,7 @@ public partial class MainViewModel : ObservableObject
     private void ClickMe() => Counter++;
 
     [ObservableProperty]
-    private ObservableCollection<CultureInfo> _languages = new ObservableCollection<CultureInfo>()
+    private List<CultureInfo> _languages = new List<CultureInfo>()
     {
         new CultureInfo("en-US"),
         new CultureInfo("fr-FR"),
@@ -32,7 +30,7 @@ public partial class MainViewModel : ObservableObject
         new CultureInfo("ar-SA"),
     };
 
-    public MainViewModel() => LocalizationManager.Current.CultureChanged += LM_CultureChanged;
+    public MainViewModel()=> LocalizationManager.Current.CultureChanged += LM_CultureChanged;
 
     ~MainViewModel() => LocalizationManager.Current.CultureChanged -= LM_CultureChanged;
 
