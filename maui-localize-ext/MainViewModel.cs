@@ -8,10 +8,14 @@ namespace maui_localize_ext;
 
 public partial class MainViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private IStringLocalizer _localizer = ServiceHelper.GetService<IStringLocalizer<AppStrings>>();
+    private IStringLocalizer _localizer;
+    public IStringLocalizer Localizer
+        => _localizer ??= ServiceHelper.GetService<IStringLocalizer<AppStrings>>();
 
-    public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+    public FlowDirection FlowDirection
+        => Culture.TextInfo.IsRightToLeft
+        ? FlowDirection.RightToLeft
+        : FlowDirection.LeftToRight;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
@@ -24,7 +28,8 @@ public partial class MainViewModel : ObservableObject
     };
 
     [RelayCommand]
-    private void ClickMe() => Counter++;
+    private void ClickMe()
+        => Counter++;
 
     public CultureInfo Culture
     {
@@ -50,4 +55,8 @@ public partial class MainViewModel : ObservableObject
         new CultureInfo("zh-CN"),
         new CultureInfo("ar-SA"),
     };
+
+    [RelayCommand]
+    private void ChangeLanguage(CultureInfo language)
+        => Culture = language;
 }
