@@ -7,7 +7,7 @@ namespace maui_localize_lm
         public App()
         {
             InitializeComponent();
-            LocalizationManager.Current.SetLocalizer<AppStrings>();
+            LocalizationManager.DefaultResourceType = typeof(AppStrings);
             MainPage = new AppShell();
         }
     }

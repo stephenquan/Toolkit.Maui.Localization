@@ -5,7 +5,7 @@
              x:Class="maui_localize_lm.MainPage"
              BindingContext="{local:MainViewModel}"
              Title="{local:Localize TITLE_MAIN}"
-             FlowDirection="{local:Localize FlowDirection}">
+             FlowDirection="{local:FlowDirection}">
     
     <ScrollView>
         <VerticalStackLayout
@@ -38,29 +38,22 @@
                 Command="{Binding ClickMeCommand}"
                 HorizontalOptions="Center" />
 
-            <CollectionView ItemsSource="{Binding Languages}"
-                            ItemsLayout="HorizontalList"
-                            SelectedItem="{local:Localize Culture,Mode=TwoWay}"
-                            SelectionMode="Single"
-                            HorizontalOptions="Center">
-                <CollectionView.ItemTemplate>
+            <HorizontalStackLayout
+                BindableLayout.ItemsSource="{Binding Languages}"
+                Spacing="20"
+                HorizontalOptions="Center" >
+                <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Frame Margin="5">
-                            <VerticalStackLayout>
-                                <Image Source="{Binding TwoLetterISOLanguageName,StringFormat='flag_{0}.png'}"
-                                       WidthRequest="32"
-                                       HeightRequest="32"/>
-                                <Label Text="{Binding Name}"/>
-                            </VerticalStackLayout>
-                        </Frame>
+                        <ImageButton
+                            Source="{Binding TwoLetterISOLanguageName,StringFormat='flag_{0}.png'}"
+                             WidthRequest="32"
+                             HeightRequest="32"
+                             Command="{Binding ChangeLanguageCommand,Source={RelativeSource AncestorType={x:Type local:MainViewModel}}}"
+                             CommandParameter="{Binding .}"/>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </BindableLayout.ItemTemplate>
+            </HorizontalStackLayout>
 
-            <Label
-                Text="{local:Localize Culture.NativeName}"
-                HorizontalOptions="Center" />
-            
         </VerticalStackLayout>
     </ScrollView>
 

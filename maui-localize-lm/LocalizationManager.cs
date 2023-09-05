@@ -4,28 +4,33 @@ using System.Globalization;
 
 namespace maui_localize_lm;
 
-public partial class LocalizationManager : ObservableObject
+public static class LocalizationManager
 {
-    private static LocalizationManager _current;
-    public static LocalizationManager Current => _current ??= new LocalizationManager();
-    public event EventHandler CultureChanged;
-    public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
-    [ObservableProperty]
-    private IStringLocalizer _localizer;
-    public IStringLocalizer GetLocalizerService<T>() => ServiceHelper.GetService<IStringLocalizer<T>>();
-    public IStringLocalizer SetLocalizer<T>() => Localizer = GetLocalizerService<T>();
-    public CultureInfo Culture
+    public static Type DefaultResourceType;
+    public static EventHandler CultureChanged;
+    public static EventHandler FlowDirectionChanged;
+
+    public static IStringLocalizer GetLocalizer<T>()
+        => ServiceHelper.GetService<IStringLocalizer<T>>();
+
+    public static IStringLocalizer GetLocalizer(Type serviceType)
+        => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { serviceType }));
+
+    public static CultureInfo Culture
     {
         get => CultureInfo.CurrentUICulture;
         set
         {
-            if (value == null) return;
-            if (value.Name == CultureInfo.CurrentUICulture.Name) return;
-            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
-            OnPropertyChanged(nameof(Culture));
-            OnPropertyChanged(nameof(FlowDirection));
-            OnPropertyChanged(nameof(Localizer));
-            CultureChanged?.Invoke(this, EventArgs.Empty);
+            if (CultureInfo.CurrentCulture.Name == value.Name) return;
+            CultureInfo.CurrentUICulture = value;
+            CultureInfo.CurrentCulture = value;
+            CultureChanged?.Invoke(null, EventArgs.Empty);
+            FlowDirectionChanged?.Invoke(null, EventArgs.Empty);
         }
     }
+
+    public static FlowDirection FlowDirection
+        => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
+        ? FlowDirection.RightToLeft
+        : FlowDirection.LeftToRight;
 }
