@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using maui_localize_lm.Resources.Strings;
 using Microsoft.Extensions.Localization;
+using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace maui_localize_lm;
@@ -11,6 +12,9 @@ public partial class MainViewModel : ObservableObject
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer
         => _localizer ??= LocalizationManager.GetLocalizer<AppStrings>();
+
+    public CultureInfo Culture
+        => CultureInfo.CurrentUICulture;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
@@ -27,13 +31,13 @@ public partial class MainViewModel : ObservableObject
     private void ClickMe() => Counter++;
 
     [ObservableProperty]
-    private List<CultureInfo> _languages = new List<CultureInfo>()
+    private ObservableCollection<LanguageInfo> _languages = new ObservableCollection<LanguageInfo>()
     {
-        new CultureInfo("en-US"),
-        new CultureInfo("fr-FR"),
-        new CultureInfo("de-DE"),
-        new CultureInfo("zh-CN"),
-        new CultureInfo("ar-SA"),
+        new LanguageInfo("en-US"),
+        new LanguageInfo("fr-FR"),
+        new LanguageInfo("de-DE"),
+        new LanguageInfo("zh-CN"),
+        new LanguageInfo("ar-SA"),
     };
 
     [RelayCommand]
@@ -47,5 +51,8 @@ public partial class MainViewModel : ObservableObject
         => LocalizationManager.CultureChanged -= OnCultureChanged;
 
     private void OnCultureChanged(object sender, EventArgs e)
-        => OnPropertyChanged(nameof(ClickText));
+    {
+        OnPropertyChanged(nameof(ClickText));
+        OnPropertyChanged(nameof(Culture));
+    }
 }

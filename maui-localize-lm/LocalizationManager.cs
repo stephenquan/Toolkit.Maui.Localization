@@ -10,11 +10,11 @@ public static class LocalizationManager
     public static EventHandler CultureChanged;
     public static EventHandler FlowDirectionChanged;
 
-    public static IStringLocalizer GetLocalizer<T>()
-        => ServiceHelper.GetService<IStringLocalizer<T>>();
+    public static IStringLocalizer GetLocalizer<TResource>()
+        => ServiceHelper.GetService<IStringLocalizer<TResource>>();
 
-    public static IStringLocalizer GetLocalizer(Type serviceType)
-        => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { serviceType }));
+    public static IStringLocalizer GetLocalizer(Type ResourceType)
+        => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { ResourceType }));
 
     public static CultureInfo Culture
     {
