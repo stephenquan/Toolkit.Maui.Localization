@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace maui_localize_mvvm;
@@ -29,36 +30,39 @@ public partial class MainViewModel : ObservableObject
     };
 
     [RelayCommand]
-    private void ClickMe() => Counter++;
+    private void ClickMe()
+        => Counter++;
 
     public CultureInfo Culture
-    {
-        get => CultureInfo.CurrentUICulture;
-        set
-        {
-            if (value == null) return;
-            if (value.Name == CultureInfo.CurrentUICulture.Name) return;
-            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
-            OnPropertyChanged(nameof(Culture));
-            OnPropertyChanged(nameof(TITLE_MAIN));
-            OnPropertyChanged(nameof(LBL_HELLO));
-            OnPropertyChanged(nameof(LBL_WELCOME));
-            OnPropertyChanged(nameof(FlowDirection));
-            OnPropertyChanged(nameof(ClickText));
-        }
-    }
+        => CultureInfo.CurrentUICulture;
 
     [ObservableProperty]
-    private List<CultureInfo> _languages = new List<CultureInfo>()
+    private ObservableCollection<LanguageInfo> _languages = new ObservableCollection<LanguageInfo>()
     {
-        new CultureInfo("en-US"),
-        new CultureInfo("fr-FR"),
-        new CultureInfo("de-DE"),
-        new CultureInfo("zh-CN"),
-        new CultureInfo("ar-SA")
+        new LanguageInfo("en-US"),
+        new LanguageInfo("fr-FR"),
+        new LanguageInfo("de-DE"),
+        new LanguageInfo("zh-CN"),
+        new LanguageInfo("ar-SA")
     };
 
     [RelayCommand]
     private void ChangeLanguage(CultureInfo language)
-        => Culture = language;
+        => LanguageInfo.Culture = language;
+
+    public MainViewModel()
+        => LanguageInfo.CultureChanged += OnCultureChanged;
+
+    ~MainViewModel()
+        => LanguageInfo.CultureChanged -= OnCultureChanged;
+
+    private void OnCultureChanged(object sender, EventArgs e)
+    {
+        OnPropertyChanged(nameof(Culture));
+        OnPropertyChanged(nameof(TITLE_MAIN));
+        OnPropertyChanged(nameof(LBL_HELLO));
+        OnPropertyChanged(nameof(LBL_WELCOME));
+        OnPropertyChanged(nameof(FlowDirection));
+        OnPropertyChanged(nameof(ClickText));
+    }
 }

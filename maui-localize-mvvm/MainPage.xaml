@@ -6,6 +6,10 @@
              BindingContext="{local:MainViewModel}"
              Title="{Binding TITLE_MAIN}"
              FlowDirection="{Binding FlowDirection}">
+
+    <ContentPage.Resources>
+        <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+    </ContentPage.Resources>
     
     <ScrollView>
         <VerticalStackLayout
@@ -38,21 +42,28 @@
                 Command="{Binding ClickMeCommand}"
                 HorizontalOptions="Center" />
 
+
             <HorizontalStackLayout
                 BindableLayout.ItemsSource="{Binding Languages}"
                 Spacing="20"
                 HorizontalOptions="Center" >
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="{x:Type local:LanguageInfo}">
                         <ImageButton
                             Source="{Binding TwoLetterISOLanguageName,StringFormat='flag_{0}.png'}"
-                             WidthRequest="32"
-                             HeightRequest="32"
-                             Command="{Binding ChangeLanguageCommand,Source={RelativeSource AncestorType={x:Type local:MainViewModel}}}"
-                             CommandParameter="{Binding .}"/>
+                            WidthRequest="48"
+                            HeightRequest="48"
+                            Padding="4"
+                            BackgroundColor="{Binding IsCurrent,Converter={x:StaticResource BoolToColorConverter}}"
+                            Command="{Binding ChangeLanguageCommand,Source={RelativeSource AncestorType={x:Type local:MainViewModel}}}"
+                            CommandParameter="{Binding .}"/>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </HorizontalStackLayout>
+
+            <Label
+                Text="{Binding Culture.NativeName}"
+                HorizontalOptions="Center" />
 
         </VerticalStackLayout>
     </ScrollView>
