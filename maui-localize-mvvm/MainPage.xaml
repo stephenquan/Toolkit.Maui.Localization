@@ -38,29 +38,22 @@
                 Command="{Binding ClickMeCommand}"
                 HorizontalOptions="Center" />
 
-            <CollectionView ItemsSource="{Binding Languages}"
-                            ItemsLayout="HorizontalList"
-                            SelectedItem="{Binding Culture,Mode=TwoWay}"
-                            SelectionMode="Single"
-                            HorizontalOptions="Center">
-                <CollectionView.ItemTemplate>
+            <HorizontalStackLayout
+                BindableLayout.ItemsSource="{Binding Languages}"
+                Spacing="20"
+                HorizontalOptions="Center" >
+                <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Frame Margin="5">
-                            <VerticalStackLayout>
-                                <Image Source="{Binding TwoLetterISOLanguageName,StringFormat='flag_{0}.png'}"
-                                       WidthRequest="32"
-                                       HeightRequest="32"/>
-                                <Label Text="{Binding Name}"/>
-                            </VerticalStackLayout>
-                        </Frame>
+                        <ImageButton
+                            Source="{Binding TwoLetterISOLanguageName,StringFormat='flag_{0}.png'}"
+                             WidthRequest="32"
+                             HeightRequest="32"
+                             Command="{Binding ChangeLanguageCommand,Source={RelativeSource AncestorType={x:Type local:MainViewModel}}}"
+                             CommandParameter="{Binding .}"/>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </BindableLayout.ItemTemplate>
+            </HorizontalStackLayout>
 
-            <Label
-                Text="{Binding Culture.NativeName}"
-                HorizontalOptions="Center" />
-            
         </VerticalStackLayout>
     </ScrollView>
 

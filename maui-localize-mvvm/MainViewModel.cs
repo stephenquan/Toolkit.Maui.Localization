@@ -6,11 +6,17 @@ namespace maui_localize_mvvm;
 
 public partial class MainViewModel : ObservableObject
 {
-    public string TITLE_MAIN => Resources.Strings.AppStrings.TITLE_MAIN;
-    public string LBL_HELLO => Resources.Strings.AppStrings.LBL_HELLO;
-    public string LBL_WELCOME => Resources.Strings.AppStrings.LBL_WELCOME;
+    public string TITLE_MAIN
+        => Resources.Strings.AppStrings.TITLE_MAIN;
+    public string LBL_HELLO
+        => Resources.Strings.AppStrings.LBL_HELLO;
+    public string LBL_WELCOME
+        => Resources.Strings.AppStrings.LBL_WELCOME;
 
-    public FlowDirection FlowDirection => Culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+    public FlowDirection FlowDirection
+        => Culture.TextInfo.IsRightToLeft
+        ? FlowDirection.RightToLeft
+        : FlowDirection.LeftToRight;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
@@ -51,4 +57,8 @@ public partial class MainViewModel : ObservableObject
         new CultureInfo("zh-CN"),
         new CultureInfo("ar-SA")
     };
+
+    [RelayCommand]
+    private void ChangeLanguage(CultureInfo language)
+        => Culture = language;
 }
