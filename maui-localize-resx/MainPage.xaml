@@ -40,31 +40,46 @@
                 HorizontalOptions="Center" />
 
             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
-                <ImageButton Source="flag_en.png"
-                             WidthRequest="64"
-                             HeightRequest="64"
-                             Clicked="OnLanguageClicked"
-                             CommandParameter="en-US"/>
-                <ImageButton Source="flag_fr.png"
-                             WidthRequest="64"
-                             HeightRequest="64"
-                             Clicked="OnLanguageClicked"
-                             CommandParameter="fr-FR"/>
-                <ImageButton Source="flag_de.png"
-                             WidthRequest="64"
-                             HeightRequest="64"
-                             Clicked="OnLanguageClicked"
-                             CommandParameter="de-DE"/>
-                <ImageButton Source="flag_zh.png"
-                             WidthRequest="64"
-                             HeightRequest="64"
-                             Clicked="OnLanguageClicked"
-                             CommandParameter="zh-CN"/>
-                <ImageButton Source="flag_ar.png"
-                             WidthRequest="64"
-                             HeightRequest="64"
-                             Clicked="OnLanguageClicked"
-                             CommandParameter="ar-AR"/>
+                <ImageButton
+                    x:Name="LangENBtn"
+                    Source="flag_en.png"
+                    WidthRequest="48"
+                    HeightRequest="48"
+                    Padding="4"
+                    Clicked="OnLanguageClicked"
+                    CommandParameter="en-US"/>
+                <ImageButton
+                    x:Name="LangFRBtn"
+                    Source="flag_fr.png"
+                    WidthRequest="48"
+                    HeightRequest="48"
+                    Padding="4"
+                    Clicked="OnLanguageClicked"
+                    CommandParameter="fr-FR"/>
+                <ImageButton
+                    x:Name="LangDEBtn"
+                    Source="flag_de.png"
+                    WidthRequest="48"
+                    HeightRequest="48"
+                    Padding="4"
+                    Clicked="OnLanguageClicked"
+                    CommandParameter="de-DE"/>
+                <ImageButton
+                    x:Name="LangZHBtn"
+                    Source="flag_zh.png"
+                    WidthRequest="48"
+                    HeightRequest="48"
+                    Padding="4"
+                    Clicked="OnLanguageClicked"
+                    CommandParameter="zh-CN"/>
+                <ImageButton
+                    x:Name="LangARBtn"
+                    Source="flag_ar.png"
+                    WidthRequest="48"
+                    HeightRequest="48"
+                    Padding="4"
+                    Clicked="OnLanguageClicked"
+                    CommandParameter="ar-SA"/>
             </HorizontalStackLayout>
 
             <Label
