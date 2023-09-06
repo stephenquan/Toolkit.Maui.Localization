@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Localization;
+using CommunityToolkit.Maui;
+using maui_localize_lm.Resources.Strings;
 
 namespace maui_localize_lm
 {
@@ -10,6 +12,8 @@ namespace maui_localize_lm
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .SetLocalizationStringResource<AppStrings>()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

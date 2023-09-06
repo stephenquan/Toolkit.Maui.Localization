@@ -1,20 +1,34 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
 using System.Globalization;
 
 namespace maui_localize_lm;
 
 public static class LocalizationManager
 {
-    public static Type DefaultResourceType;
+    public static Type DefaultStringResource;
     public static EventHandler CultureChanged;
     public static EventHandler FlowDirectionChanged;
 
-    public static IStringLocalizer GetLocalizer<TResource>()
-        => ServiceHelper.GetService<IStringLocalizer<TResource>>();
+    public static IStringLocalizer GetLocalizer<TStringResource>()
+        => ServiceHelper.GetService<IStringLocalizer<TStringResource>>();
+    public static IStringLocalizer GetLocalizer(Type StringResource)
+        => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { StringResource ?? DefaultStringResource }));
 
-    public static IStringLocalizer GetLocalizer(Type ResourceType)
-        => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { ResourceType }));
+    public static Type SetDefaultStringResource<TStringResource>()
+        => DefaultStringResource = typeof(TStringResource);
+    public static Type SetDefaultStringResource(Type StringResource)
+        => DefaultStringResource = StringResource;
+
+    public static MauiAppBuilder SetLocalizationStringResource<TStringResource>(this MauiAppBuilder builder)
+    {
+        SetDefaultStringResource<TStringResource>();
+        return builder;
+    }
+    public static MauiAppBuilder SetLocalizationStringResource(this MauiAppBuilder builder, Type StringResource)
+    {
+        SetDefaultStringResource(StringResource);
+        return builder;
+    }
 
     public static CultureInfo Culture
     {

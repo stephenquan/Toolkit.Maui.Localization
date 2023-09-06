@@ -2,13 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:maui_localize_mvvm"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="maui_localize_mvvm.MainPage"
              BindingContext="{local:MainViewModel}"
              Title="{Binding TITLE_MAIN}"
              FlowDirection="{Binding FlowDirection}">
 
     <ContentPage.Resources>
-        <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        <ResourceDictionary>
+            <toolkit:BoolToObjectConverter
+                x:Key="BoolToColorConverter"
+                TrueObject="{x:Static Colors.Orange}"
+                FalseObject="{x:Static Colors.Transparent}"/>
+        </ResourceDictionary>
     </ContentPage.Resources>
     
     <ScrollView>

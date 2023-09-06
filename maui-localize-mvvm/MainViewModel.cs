@@ -34,7 +34,21 @@ public partial class MainViewModel : ObservableObject
         => Counter++;
 
     public CultureInfo Culture
-        => CultureInfo.CurrentUICulture;
+    {
+        get => CultureInfo.CurrentUICulture;
+        set
+        {
+            if (value.Name == CultureInfo.CurrentUICulture.Name) return;
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
+            CultureChanged?.Invoke(null, EventArgs.Empty);
+            OnPropertyChanged(nameof(Culture));
+            OnPropertyChanged(nameof(TITLE_MAIN));
+            OnPropertyChanged(nameof(LBL_HELLO));
+            OnPropertyChanged(nameof(LBL_WELCOME));
+            OnPropertyChanged(nameof(FlowDirection));
+            OnPropertyChanged(nameof(ClickText));
+        }
+    }
 
     [ObservableProperty]
     private ObservableCollection<LanguageInfo> _languages = new ObservableCollection<LanguageInfo>()
@@ -48,21 +62,7 @@ public partial class MainViewModel : ObservableObject
 
     [RelayCommand]
     private void ChangeLanguage(CultureInfo language)
-        => LanguageInfo.Culture = language;
+        => Culture = language;
 
-    public MainViewModel()
-        => LanguageInfo.CultureChanged += OnCultureChanged;
-
-    ~MainViewModel()
-        => LanguageInfo.CultureChanged -= OnCultureChanged;
-
-    private void OnCultureChanged(object sender, EventArgs e)
-    {
-        OnPropertyChanged(nameof(Culture));
-        OnPropertyChanged(nameof(TITLE_MAIN));
-        OnPropertyChanged(nameof(LBL_HELLO));
-        OnPropertyChanged(nameof(LBL_WELCOME));
-        OnPropertyChanged(nameof(FlowDirection));
-        OnPropertyChanged(nameof(ClickText));
-    }
+    public static EventHandler CultureChanged;
 }

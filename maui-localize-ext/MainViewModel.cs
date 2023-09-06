@@ -2,12 +2,15 @@
 using CommunityToolkit.Mvvm.Input;
 using maui_localize_ext.Resources.Strings;
 using Microsoft.Extensions.Localization;
+using System.Collections.ObjectModel;
 using System.Globalization;
 
 namespace maui_localize_ext;
 
 public partial class MainViewModel : ObservableObject
 {
+    public static EventHandler CultureChanged;
+
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer
         => _localizer ??= ServiceHelper.GetService<IStringLocalizer<AppStrings>>();
@@ -43,17 +46,18 @@ public partial class MainViewModel : ObservableObject
             OnPropertyChanged(nameof(Localizer));
             OnPropertyChanged(nameof(FlowDirection));
             OnPropertyChanged(nameof(ClickText));
+            CultureChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
     [ObservableProperty]
-    private List<CultureInfo> _languages = new List<CultureInfo>()
+    private ObservableCollection<LanguageInfo> _languages = new ObservableCollection<LanguageInfo>()
     {
-        new CultureInfo("en-US"),
-        new CultureInfo("fr-FR"),
-        new CultureInfo("de-DE"),
-        new CultureInfo("zh-CN"),
-        new CultureInfo("ar-SA"),
+        new LanguageInfo("en-US"),
+        new LanguageInfo("fr-FR"),
+        new LanguageInfo("de-DE"),
+        new LanguageInfo("zh-CN"),
+        new LanguageInfo("ar-SA"),
     };
 
     [RelayCommand]

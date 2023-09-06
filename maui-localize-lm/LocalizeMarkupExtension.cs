@@ -9,14 +9,14 @@ public class LocalizeExtension : IMarkupExtension<BindingBase>, INotifyPropertyC
 {
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer
-        => _localizer ??= LocalizationManager.GetLocalizer(ResourceType ?? LocalizationManager.DefaultResourceType);
+        => _localizer ??= LocalizationManager.GetLocalizer(StringResource);
 
     public string Path { get; set; } = ".";
     public BindingMode Mode { get; set; } = BindingMode.OneWay;
     public IValueConverter Converter { get; set; } = null;
     public string ConverterParameter { get; set; } = null;
     public string StringFormat { get; set; } = null;
-    public Type ResourceType { get; set; } = null;
+    public Type StringResource { get; set; } = null;
 
     public object ProvideValue(IServiceProvider serviceProvider)
         => (this as IMarkupExtension<BindingBase>).ProvideValue(serviceProvider);
