@@ -7,7 +7,6 @@ using System.Globalization;
 
 namespace maui_localize_di;
 
-
 public partial class MainViewModel : ObservableObject
 {
     public LocalizationManager LM { get; set; }

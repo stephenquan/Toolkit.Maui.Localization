@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Maui;
 using maui_localize_di.Resources.Strings;
-using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 
 namespace maui_localize_di
