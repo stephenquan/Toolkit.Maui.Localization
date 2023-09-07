@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Localization;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace maui_localize_lm;
 
@@ -9,7 +9,7 @@ public class LocalizeExtension : IMarkupExtension<BindingBase>, INotifyPropertyC
 {
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer
-        => _localizer ??= LocalizationManager.GetLocalizer(StringResource);
+        => _localizer ??= LocalizationManager.GetStringLocalizer(StringResource);
 
     public string Path { get; set; } = ".";
     public BindingMode Mode { get; set; } = BindingMode.OneWay;
@@ -24,11 +24,11 @@ public class LocalizeExtension : IMarkupExtension<BindingBase>, INotifyPropertyC
         => new Binding($"Localizer[{Path}]", Mode, Converter, ConverterParameter, StringFormat, this);
 
     public LocalizeExtension()
-        => LocalizationManager.CultureChanged += OnLanguageChanged;
+        => LocalizationManager.CurrentCultureChanged += OnCurrentCultureChanged;
     ~LocalizeExtension()
-        => LocalizationManager.CultureChanged -= OnLanguageChanged;
+        => LocalizationManager.CurrentCultureChanged -= OnCurrentCultureChanged;
 
-    private void OnLanguageChanged(object sender, EventArgs e)
+    private void OnCurrentCultureChanged(object sender, CultureInfo culture)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Localizer)));
 
     public event PropertyChangedEventHandler PropertyChanged;

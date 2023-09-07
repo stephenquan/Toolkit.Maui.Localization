@@ -11,10 +11,7 @@ public partial class MainViewModel : ObservableObject
 {
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer
-        => _localizer ??= LocalizationManager.GetLocalizer<AppStrings>();
-
-    public CultureInfo Culture
-        => CultureInfo.CurrentUICulture;
+        => _localizer ??= LocalizationManager.GetStringLocalizer<AppStrings>();
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
@@ -28,7 +25,8 @@ public partial class MainViewModel : ObservableObject
     };
 
     [RelayCommand]
-    private void ClickMe() => Counter++;
+    private void ClickMe()
+        => Counter++;
 
     [ObservableProperty]
     private ObservableCollection<LanguageInfo> _languages = new ObservableCollection<LanguageInfo>()
@@ -42,17 +40,14 @@ public partial class MainViewModel : ObservableObject
 
     [RelayCommand]
     private void ChangeLanguage(CultureInfo language)
-        => LocalizationManager.Culture = language;
+        => LocalizationManager.Current.CurrentCulture = language;
 
     public MainViewModel()
-        => LocalizationManager.CultureChanged += OnCultureChanged;
+        => LocalizationManager.CurrentCultureChanged += OnCurrentCultureChanged;
 
     ~MainViewModel()
-        => LocalizationManager.CultureChanged -= OnCultureChanged;
+        => LocalizationManager.CurrentCultureChanged -= OnCurrentCultureChanged;
 
-    private void OnCultureChanged(object sender, EventArgs e)
-    {
-        OnPropertyChanged(nameof(ClickText));
-        OnPropertyChanged(nameof(Culture));
-    }
+    private void OnCurrentCultureChanged(object sender, CultureInfo culture)
+        => OnPropertyChanged(nameof(ClickText));
 }

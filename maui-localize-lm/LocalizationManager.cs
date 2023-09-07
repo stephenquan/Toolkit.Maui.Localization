@@ -1,50 +1,46 @@
 ﻿using Microsoft.Extensions.Localization;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace maui_localize_lm;
 
-public static class LocalizationManager
+public class LocalizationManager : INotifyPropertyChanged
 {
     public static Type DefaultStringResource;
-    public static EventHandler CultureChanged;
-    public static EventHandler FlowDirectionChanged;
-
-    public static IStringLocalizer GetLocalizer<TStringResource>()
-        => ServiceHelper.GetService<IStringLocalizer<TStringResource>>();
-    public static IStringLocalizer GetLocalizer(Type StringResource)
+    public static IStringLocalizer GetStringLocalizer(Type StringResource = null)
         => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { StringResource ?? DefaultStringResource }));
+    public static IStringLocalizer GetStringLocalizer<TStringResource>()
+        => ServiceHelper.GetService<IStringLocalizer<TStringResource>>();
 
-    public static Type SetDefaultStringResource<TStringResource>()
-        => DefaultStringResource = typeof(TStringResource);
-    public static Type SetDefaultStringResource(Type StringResource)
-        => DefaultStringResource = StringResource;
+    public static LocalizationManager _current;
+    public static LocalizationManager Current
+        => _current ??= new LocalizationManager();
 
-    public static MauiAppBuilder SetLocalizationStringResource<TStringResource>(this MauiAppBuilder builder)
-    {
-        SetDefaultStringResource<TStringResource>();
-        return builder;
-    }
-    public static MauiAppBuilder SetLocalizationStringResource(this MauiAppBuilder builder, Type StringResource)
-    {
-        SetDefaultStringResource(StringResource);
-        return builder;
-    }
+    public static EventHandler<CultureInfo> CurrentCultureChanged;
+    public static EventHandler<FlowDirection> FlowDirectionChanged;
 
-    public static CultureInfo Culture
+
+    public FlowDirection FlowDirection
+        => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
+        ? FlowDirection.RightToLeft
+        : FlowDirection.LeftToRight;
+
+    public CultureInfo CurrentCulture
     {
         get => CultureInfo.CurrentUICulture;
         set
         {
-            if (CultureInfo.CurrentCulture.Name == value.Name) return;
-            CultureInfo.CurrentUICulture = value;
-            CultureInfo.CurrentCulture = value;
-            CultureChanged?.Invoke(null, EventArgs.Empty);
-            FlowDirectionChanged?.Invoke(null, EventArgs.Empty);
+            if (CultureInfo.CurrentCulture.Name == value.Name)
+            {
+                return;
+            }
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
+            CurrentCultureChanged?.Invoke(null, value);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCulture)));
+            FlowDirectionChanged?.Invoke(this, FlowDirection);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FlowDirection)));
         }
     }
 
-    public static FlowDirection FlowDirection
-        => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
-        ? FlowDirection.RightToLeft
-        : FlowDirection.LeftToRight;
+    public event PropertyChangedEventHandler PropertyChanged;
 }

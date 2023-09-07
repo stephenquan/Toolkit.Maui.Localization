@@ -52,7 +52,8 @@
             <HorizontalStackLayout
                 BindableLayout.ItemsSource="{Binding Languages}"
                 Spacing="20"
-                HorizontalOptions="Center" >
+                HorizontalOptions="Center"
+                FlowDirection="LeftToRight" >
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type local:LanguageInfo}">
                         <ImageButton
@@ -68,7 +69,7 @@
             </HorizontalStackLayout>
 
             <Label
-                Text="{Binding Culture.NativeName}"
+                Text="{Binding CurrentCulture.NativeName,Source={x:Static local:LocalizationManager.Current}}"
                 HorizontalOptions="Center" />
 
         </VerticalStackLayout>

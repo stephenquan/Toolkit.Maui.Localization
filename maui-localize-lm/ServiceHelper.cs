@@ -4,8 +4,8 @@ public static class ServiceHelper
 {
     public static TService GetService<TService>()
         => Current.GetService<TService>();
-    public static object? GetService(Type serviceType)
-        => Current.GetService(serviceType);
+    public static object? GetService(Type ServiceType)
+        => Current.GetService(ServiceType);
 
     private static IServiceProvider Current =>
 #if WINDOWS

@@ -52,7 +52,8 @@
             <HorizontalStackLayout
                 BindableLayout.ItemsSource="{Binding Languages}"
                 Spacing="20"
-                HorizontalOptions="Center" >
+                HorizontalOptions="Center"
+                FlowDirection="LeftToRight" >
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type local:LanguageInfo}">
                         <ImageButton

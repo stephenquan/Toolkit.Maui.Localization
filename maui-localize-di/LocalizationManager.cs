@@ -29,7 +29,6 @@ public class LocalizationManager : INotifyPropertyChanged
             {
                 return;
             }
-            FlowDirection _flowDirection = this.FlowDirection;
             CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
             CurrentCultureChanged?.Invoke(this, value);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCulture)));

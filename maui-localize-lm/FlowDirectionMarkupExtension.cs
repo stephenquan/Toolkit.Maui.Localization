@@ -1,14 +1,9 @@
-﻿using System.ComponentModel;
-
-namespace maui_localize_lm;
+﻿namespace maui_localize_lm;
 
 [ContentProperty(nameof(Path))]
-public class FlowDirectionExtension : IMarkupExtension<BindingBase>, INotifyPropertyChanged
+public class FlowDirectionExtension : IMarkupExtension<BindingBase>
 {
-    public FlowDirection FlowDirection
-        => LocalizationManager.FlowDirection;
-
-    public string Path { get; set; } = ".";
+    public string Path { get; set; } = nameof(LocalizationManager.FlowDirection);
     public BindingMode Mode { get; set; } = BindingMode.OneWay;
     public IValueConverter Converter { get; set; } = null;
     public string ConverterParameter { get; set; } = null;
@@ -17,15 +12,5 @@ public class FlowDirectionExtension : IMarkupExtension<BindingBase>, INotifyProp
     public object ProvideValue(IServiceProvider serviceProvider)
         => (this as IMarkupExtension<BindingBase>).ProvideValue(serviceProvider);
     BindingBase IMarkupExtension<BindingBase>.ProvideValue(IServiceProvider serviceProvider)
-        => new Binding(nameof(FlowDirection), Mode, Converter, ConverterParameter, StringFormat, this);
-
-    public FlowDirectionExtension()
-        => LocalizationManager.FlowDirectionChanged += OnFlowDirectionChanged;
-    ~FlowDirectionExtension()
-        => LocalizationManager.FlowDirectionChanged -= OnFlowDirectionChanged;
-
-    private void OnFlowDirectionChanged(object sender, EventArgs e)
-        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FlowDirection)));
-
-    public event PropertyChangedEventHandler PropertyChanged;
+        => new Binding(Path, Mode, Converter, ConverterParameter, StringFormat, LocalizationManager.Current);
 }

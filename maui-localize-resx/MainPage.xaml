@@ -39,7 +39,10 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
-            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <HorizontalStackLayout
+                Spacing="20"
+                HorizontalOptions="Center"
+                FlowDirection="LeftToRight" >
                 <ImageButton
                     x:Name="LangENBtn"
                     Source="flag_en.png"

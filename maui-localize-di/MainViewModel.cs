@@ -10,10 +10,8 @@ namespace maui_localize_di;
 
 public partial class MainViewModel : ObservableObject
 {
-    //private LocalizationManager _lm;
-    //public LocalizationManager LM
-    //    => _lm ??= ServiceHelper.GetService<LocalizationManager>();
     public LocalizationManager LM { get; set; }
+
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer
         => _localizer ??= LocalizationManager.GetStringLocalizer<AppStrings>();
@@ -55,6 +53,7 @@ public partial class MainViewModel : ObservableObject
 
     ~MainViewModel()
         => LocalizationManager.CurrentCultureChanged -= OnCurrentCultureChanged;
+
     private void OnCurrentCultureChanged(object sender, CultureInfo culture)
     {
         OnPropertyChanged(nameof(ClickText));

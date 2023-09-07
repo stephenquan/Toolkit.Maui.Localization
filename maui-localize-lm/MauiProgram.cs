@@ -13,14 +13,13 @@ namespace maui_localize_lm
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .SetLocalizationStringResource<AppStrings>()
+                .UseLocalizationManager<AppStrings>()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddLocalization();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
