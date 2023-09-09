@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using maui_localize_di.Resources.Strings;
-using Microsoft.Extensions.Localization;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -11,19 +9,15 @@ public partial class MainViewModel : ObservableObject
 {
     public LocalizationManager LM { get; set; }
 
-    private IStringLocalizer _localizer;
-    public IStringLocalizer Localizer
-        => _localizer ??= LocalizationManager.GetStringLocalizer<AppStrings>();
-
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
     private int _counter = 0;
 
     public string ClickText => Counter switch
     {
-        0 => Localizer["STR_CLICK_ME"],
-        1 => Localizer["STR_CLICKED_1_TIME"],
-        _ => Localizer["STR_CLICKED_N_TIMES", Counter]
+        0 => LM["STR_CLICK_ME"],
+        1 => LM["STR_CLICKED_1_TIME"],
+        _ => LM["STR_CLICKED_N_TIMES", Counter]
     };
 
     [RelayCommand]
@@ -31,14 +25,7 @@ public partial class MainViewModel : ObservableObject
         => Counter++;
 
     [ObservableProperty]
-    private ObservableCollection<LanguageInfo> _languages = new ObservableCollection<LanguageInfo>()
-    {
-        new LanguageInfo("en-US"),
-        new LanguageInfo("fr-FR"),
-        new LanguageInfo("de-DE"),
-        new LanguageInfo("zh-CN"),
-        new LanguageInfo("ar-SA"),
-    };
+    private ObservableCollection<LanguageInfo> _languages;
 
     [RelayCommand]
     private void ChangeLanguage(CultureInfo language)
@@ -47,15 +34,22 @@ public partial class MainViewModel : ObservableObject
     public MainViewModel(LocalizationManager lm)
     {
         LM = lm;
-        LocalizationManager.CurrentCultureChanged += OnCurrentCultureChanged;
+        LM.CurrentCultureChanged += OnCurrentCultureChanged;
+        Languages = new ObservableCollection<LanguageInfo>()
+        {
+            new LanguageInfo(LM, "en-US"),
+            new LanguageInfo(LM, "fr-FR"),
+            new LanguageInfo(LM, "de-DE"),
+            new LanguageInfo(LM, "zh-CN"),
+            new LanguageInfo(LM, "ar-SA"),
+        };
     }
 
     ~MainViewModel()
-        => LocalizationManager.CurrentCultureChanged -= OnCurrentCultureChanged;
+    {
+        LM.CurrentCultureChanged -= OnCurrentCultureChanged;
+    }
 
     private void OnCurrentCultureChanged(object sender, CultureInfo culture)
-    {
-        OnPropertyChanged(nameof(ClickText));
-        OnPropertyChanged(nameof(Localizer));
-    }
+        => OnPropertyChanged(nameof(ClickText));
 }

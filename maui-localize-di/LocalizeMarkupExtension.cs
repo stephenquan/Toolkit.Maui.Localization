@@ -7,9 +7,13 @@ namespace maui_localize_di;
 [ContentProperty(nameof(Path))]
 public class LocalizeExtension : IMarkupExtension<BindingBase>, INotifyPropertyChanged
 {
+    private LocalizationManager lm;
+    public LocalizationManager LM
+        => lm ??= ServiceHelper.GetService<LocalizationManager>();
+
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer
-        => _localizer ??= LocalizationManager.GetStringLocalizer(StringResource);
+        => _localizer ??= LocalizationManager.GetLocalizer(StringResource);
 
     public string Path { get; set; } = ".";
     public BindingMode Mode { get; set; } = BindingMode.OneWay;
@@ -24,9 +28,9 @@ public class LocalizeExtension : IMarkupExtension<BindingBase>, INotifyPropertyC
         => new Binding($"Localizer[{Path}]", Mode, Converter, ConverterParameter, StringFormat, this);
 
     public LocalizeExtension()
-        => LocalizationManager.CurrentCultureChanged += OnCurrentCultureChanged;
+        => LM.CurrentCultureChanged += OnCurrentCultureChanged;
     ~LocalizeExtension()
-        => LocalizationManager.CurrentCultureChanged -= OnCurrentCultureChanged;
+        => LM.CurrentCultureChanged -= OnCurrentCultureChanged;
 
     private void OnCurrentCultureChanged(object sender, CultureInfo e)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Localizer)));

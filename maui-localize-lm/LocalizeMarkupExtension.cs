@@ -9,7 +9,7 @@ public class LocalizeExtension : IMarkupExtension<BindingBase>, INotifyPropertyC
 {
     private IStringLocalizer _localizer;
     public IStringLocalizer Localizer
-        => _localizer ??= LocalizationManager.GetStringLocalizer(StringResource);
+        => _localizer ??= LocalizationManager.GetLocalizer(StringResource);
 
     public string Path { get; set; } = ".";
     public BindingMode Mode { get; set; } = BindingMode.OneWay;
@@ -24,9 +24,9 @@ public class LocalizeExtension : IMarkupExtension<BindingBase>, INotifyPropertyC
         => new Binding($"Localizer[{Path}]", Mode, Converter, ConverterParameter, StringFormat, this);
 
     public LocalizeExtension()
-        => LocalizationManager.CurrentCultureChanged += OnCurrentCultureChanged;
+        => LocalizationManager.Current.CurrentCultureChanged += OnCurrentCultureChanged;
     ~LocalizeExtension()
-        => LocalizationManager.CurrentCultureChanged -= OnCurrentCultureChanged;
+        => LocalizationManager.Current.CurrentCultureChanged -= OnCurrentCultureChanged;
 
     private void OnCurrentCultureChanged(object sender, CultureInfo culture)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Localizer)));

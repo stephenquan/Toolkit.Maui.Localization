@@ -5,10 +5,19 @@ namespace maui_localize_di;
 
 public class LanguageInfo : CultureInfo, INotifyPropertyChanged
 {
-    public LanguageInfo(string language) : base(language)
-        => LocalizationManager.CurrentCultureChanged += OnCultureChanged;
+    private LocalizationManager LM;
+
+    public LanguageInfo(LocalizationManager lm, string language) : base(language)
+    {
+        LM = lm;
+        LM.CurrentCultureChanged += OnCultureChanged;
+    }
+
     ~LanguageInfo()
-        => LocalizationManager.CurrentCultureChanged -= OnCultureChanged;
+    {
+        LM.CurrentCultureChanged -= OnCultureChanged;
+    }
+
     private void OnCultureChanged(object sender, CultureInfo culture)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsCurrent)));
     public bool IsCurrent

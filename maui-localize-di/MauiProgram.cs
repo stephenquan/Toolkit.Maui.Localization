@@ -21,6 +21,7 @@ namespace maui_localize_di
 
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<LanguageInfo>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

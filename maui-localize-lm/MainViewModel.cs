@@ -9,19 +9,15 @@ namespace maui_localize_lm;
 
 public partial class MainViewModel : ObservableObject
 {
-    private IStringLocalizer _localizer;
-    public IStringLocalizer Localizer
-        => _localizer ??= LocalizationManager.GetStringLocalizer<AppStrings>();
-
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ClickText))]
     private int _counter = 0;
 
     public string ClickText => Counter switch
     {
-        0 => Localizer["STR_CLICK_ME"],
-        1 => Localizer["STR_CLICKED_1_TIME"],
-        _ => Localizer["STR_CLICKED_N_TIMES", Counter]
+        0 => LocalizationManager.Current["STR_CLICK_ME"],
+        1 => LocalizationManager.Current["STR_CLICKED_1_TIME"],
+        _ => LocalizationManager.Current["STR_CLICKED_N_TIMES", Counter]
     };
 
     [RelayCommand]
@@ -43,10 +39,10 @@ public partial class MainViewModel : ObservableObject
         => LocalizationManager.Current.CurrentCulture = language;
 
     public MainViewModel()
-        => LocalizationManager.CurrentCultureChanged += OnCurrentCultureChanged;
+        => LocalizationManager.Current.CurrentCultureChanged += OnCurrentCultureChanged;
 
     ~MainViewModel()
-        => LocalizationManager.CurrentCultureChanged -= OnCurrentCultureChanged;
+        => LocalizationManager.Current.CurrentCultureChanged -= OnCurrentCultureChanged;
 
     private void OnCurrentCultureChanged(object sender, CultureInfo culture)
         => OnPropertyChanged(nameof(ClickText));

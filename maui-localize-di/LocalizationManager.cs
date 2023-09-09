@@ -7,13 +7,17 @@ namespace maui_localize_di;
 public class LocalizationManager : INotifyPropertyChanged
 {
     public static Type DefaultStringResource;
-    public static IStringLocalizer GetStringLocalizer(Type StringResource = null)
+    public static IStringLocalizer GetLocalizer(Type StringResource = null)
         => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { StringResource ?? DefaultStringResource }));
-    public static IStringLocalizer GetStringLocalizer<TStringResource>()
+    public static IStringLocalizer GetLocalizer<TStringResource>()
         => ServiceHelper.GetService<IStringLocalizer<TStringResource>>();
 
-    public static EventHandler<CultureInfo> CurrentCultureChanged;
-    public static EventHandler<FlowDirection> FlowDirectionChanged;
+    public EventHandler<CultureInfo> CurrentCultureChanged;
+    public EventHandler<FlowDirection> FlowDirectionChanged;
+
+    private IStringLocalizer _defaultLocalizer;
+    private IStringLocalizer DefaultLocalizer
+        => _defaultLocalizer ??= GetLocalizer(DefaultStringResource);
 
     public FlowDirection FlowDirection
         => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
@@ -36,6 +40,17 @@ public class LocalizationManager : INotifyPropertyChanged
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FlowDirection)));
         }
     }
+
+    public string this[string name] => DefaultLocalizer[name];
+    public string this[string name, params object[] args] => DefaultLocalizer[name, args];
+
+    public CultureInfo InstalledCulture
+        => CultureInfo.InstalledUICulture;
+
+    public LocalizationManager()
+    {
+    }
+
 
     public event PropertyChangedEventHandler PropertyChanged;
 }
