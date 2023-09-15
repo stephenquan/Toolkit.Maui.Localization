@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:maui_localize_lm"
+             xmlns:i18n="clr-namespace:maui_localize_lm.Localization"
              xmlns:resx="clr-namespace:maui_localize_lm.Resources.Strings"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="maui_localize_lm.MainPage"
              BindingContext="{local:MainViewModel}"
-             Title="{local:Localize TITLE_MAIN}"
-             FlowDirection="{local:FlowDirection}">
+             Title="{i18n:Localize TITLE_MAIN}"
+             FlowDirection="{i18n:LocalizeFlowDirection}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -31,20 +32,23 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{local:Localize LBL_HELLO,StringResource={x:Type resx:AppStrings}}"
+                Text="{i18n:Localize LBL_HELLO, StringResource={x:Type resx:AppStrings}}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="{local:Localize LBL_WELCOME}"
+                Text="{i18n:Localize LBL_WELCOME}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
             <Button
-                Text="{Binding ClickText}"
+                Text="{i18n:LocalizeBinding Counter,
+                                            LocalizeFormat=STR_CLICKED_N_TIMES,
+                                            LocalizeOne=STR_CLICKED_1_TIME,
+                                            LocalizeZero=STR_CLICK_ME}"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Command="{Binding ClickMeCommand}"
                 HorizontalOptions="Center" />
@@ -55,7 +59,7 @@
                 HorizontalOptions="Center"
                 FlowDirection="LeftToRight" >
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type local:LanguageInfo}">
+                    <DataTemplate x:DataType="{x:Type i18n:LanguageInfo}">
                         <ImageButton
                             Source="{Binding TwoLetterISOLanguageName,StringFormat='flag_{0}.png'}"
                             WidthRequest="48"
@@ -69,7 +73,7 @@
             </HorizontalStackLayout>
 
             <Label
-                Text="{Binding CurrentCulture.NativeName,Source={x:Static local:LocalizationManager.Current}}"
+                Text="{Binding CurrentCulture.NativeName, Source={x:Static i18n:LocalizationManager.Current}}"
                 HorizontalOptions="Center" />
 
         </VerticalStackLayout>

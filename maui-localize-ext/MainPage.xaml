@@ -72,7 +72,6 @@
                 Text="{Binding Culture.NativeName}"
                 HorizontalOptions="Center" />
 
-
         </VerticalStackLayout>
     </ScrollView>
 

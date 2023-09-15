@@ -1,4 +1,4 @@
-﻿namespace maui_localize_di;
+﻿namespace maui_localize_lm.Localization;
 
 public static class LocalizationAppExtension
 {
@@ -8,7 +8,6 @@ public static class LocalizationAppExtension
     public static MauiAppBuilder UseLocalizationManager(this MauiAppBuilder builder, Type StringResource = null)
     {
         LocalizationManager.DefaultStringResource = StringResource;
-        builder.Services.AddSingleton<LocalizationManager>();
         builder.Services.AddLocalization();
         return builder;
     }

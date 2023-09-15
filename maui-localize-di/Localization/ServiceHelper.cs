@@ -1,6 +1,6 @@
-﻿namespace maui_localize_di;
+﻿namespace maui_localize_di.Localization;
 
-public static class ServiceHelper
+internal static class ServiceHelper
 {
     public static TService GetService<TService>()
         => Current.GetService<TService>();

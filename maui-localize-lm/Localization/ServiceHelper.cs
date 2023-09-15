@@ -1,4 +1,4 @@
-﻿namespace maui_localize_lm;
+﻿namespace maui_localize_lm.Localization;
 
 public static class ServiceHelper
 {

@@ -51,14 +51,9 @@ public partial class MainViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    private ObservableCollection<LanguageInfo> _languages = new ObservableCollection<LanguageInfo>()
-    {
-        new LanguageInfo("en-US"),
-        new LanguageInfo("fr-FR"),
-        new LanguageInfo("de-DE"),
-        new LanguageInfo("zh-CN"),
-        new LanguageInfo("ar-SA"),
-    };
+    private ObservableCollection<LanguageInfo> _languages = new ObservableCollection<LanguageInfo>(
+        new string[] { "en-US", "fr-FR", "de-DE", "zh-CN", "ar-SA" }
+        .Select(s => new LanguageInfo(s)));
 
     [RelayCommand]
     private void ChangeLanguage(CultureInfo language)

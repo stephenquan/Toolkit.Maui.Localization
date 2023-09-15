@@ -1,27 +1,21 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 
-namespace maui_localize_di;
+namespace maui_localize_lm.Localization;
 
 public class LanguageInfo : CultureInfo, INotifyPropertyChanged
 {
-    private LocalizationManager LM;
-
-    public LanguageInfo(LocalizationManager lm, string language) : base(language)
-    {
-        LM = lm;
-        LM.CurrentCultureChanged += OnCultureChanged;
-    }
+    public LanguageInfo(string language) : base(language)
+        => LocalizationManager.Current.CurrentCultureChanged += OnCurrentCultureChanged;
 
     ~LanguageInfo()
-    {
-        LM.CurrentCultureChanged -= OnCultureChanged;
-    }
+        => LocalizationManager.Current.CurrentCultureChanged -= OnCurrentCultureChanged;
 
-    private void OnCultureChanged(object sender, CultureInfo culture)
+    private void OnCurrentCultureChanged(object sender, CultureInfo culture)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsCurrent)));
+
     public bool IsCurrent
         => Name == CultureInfo.CurrentUICulture.Name;
+
     public event PropertyChangedEventHandler PropertyChanged;
 }
-

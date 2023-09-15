@@ -2,15 +2,19 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace maui_localize_di;
+namespace maui_localize_lm.Localization;
 
 public class LocalizationManager : INotifyPropertyChanged
 {
     public static Type DefaultStringResource;
     public static IStringLocalizer GetLocalizer(Type StringResource = null)
         => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { StringResource ?? DefaultStringResource }));
-    public static IStringLocalizer GetLocalizer<TStringResource>()
+    public static IStringLocalizer GetStringLocalizer<TStringResource>()
         => ServiceHelper.GetService<IStringLocalizer<TStringResource>>();
+
+    public static LocalizationManager _current;
+    public static LocalizationManager Current
+        => _current ??= new LocalizationManager();
 
     public EventHandler<CultureInfo> CurrentCultureChanged;
     public EventHandler<FlowDirection> FlowDirectionChanged;
@@ -29,28 +33,21 @@ public class LocalizationManager : INotifyPropertyChanged
         get => CultureInfo.CurrentUICulture;
         set
         {
-            if (CultureInfo.CurrentUICulture.Name == value.Name)
+            if (CultureInfo.CurrentCulture.Name == value.Name)
             {
                 return;
             }
             CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = value;
-            CurrentCultureChanged?.Invoke(this, value);
+            CurrentCultureChanged?.Invoke(null, value);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentCulture)));
             FlowDirectionChanged?.Invoke(this, FlowDirection);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FlowDirection)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Item"));
         }
     }
 
     public string this[string name] => DefaultLocalizer[name];
     public string this[string name, params object[] args] => DefaultLocalizer[name, args];
-
-    public CultureInfo InstalledCulture
-        => CultureInfo.InstalledUICulture;
-
-    public LocalizationManager()
-    {
-    }
-
 
     public event PropertyChangedEventHandler PropertyChanged;
 }

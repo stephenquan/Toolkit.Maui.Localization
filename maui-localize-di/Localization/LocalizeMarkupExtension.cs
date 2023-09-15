@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace maui_localize_di;
+namespace maui_localize_di.Localization;
 
 [ContentProperty(nameof(Path))]
 public class LocalizeExtension : IMarkupExtension<BindingBase>, INotifyPropertyChanged

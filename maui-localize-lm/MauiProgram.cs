@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Localization;
 using CommunityToolkit.Maui;
 using maui_localize_lm.Resources.Strings;
+using maui_localize_lm.Localization;
 
 namespace maui_localize_lm
 {
