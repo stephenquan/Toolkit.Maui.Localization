@@ -56,7 +56,7 @@ public partial class MainViewModel : ObservableObject
         .Select(s => new LanguageInfo(s)));
 
     [RelayCommand]
-    private void ChangeLanguage(CultureInfo language)
+    private void ChangeLanguage(LanguageInfo language)
         => Culture = language;
 
     public static EventHandler CultureChanged;

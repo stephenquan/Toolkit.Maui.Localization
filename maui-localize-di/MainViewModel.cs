@@ -28,6 +28,6 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void ChangeLanguage(CultureInfo language)
+    private void ChangeLanguage(LanguageInfo language)
         => LM.CurrentCulture = language;
 }
