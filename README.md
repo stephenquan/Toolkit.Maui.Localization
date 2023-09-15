@@ -2,10 +2,9 @@
 
 The steps required to localize an app are:
  1. Create string Resource files with the convention:
-      Resources/Strings/filename.resx
-      Resources/Strings/filename.[additionalLanguage1].resx
-      Resources/Strings/filename.[additionalLanguage2].resx
-      ...
+      - Resources/Strings/filename.resx
+      - Resources/Strings/filename.[additionalLanguage1].resx
+      - Resources/Strings/filename.[additionalLanguage2].resx
  2. Consume the resource strings in your app
  3. Optional set CultureInfo.CurrentUICulture and reload resource stings
 
@@ -21,7 +20,8 @@ However, in the code behind, we react to changes in language and rewrite all tex
 Implements localization using MVVM.
 Resource strings are exposed via getter functions in the ViewModel.
 Those strings are linked to controls via the Binding markup extension in XAML.
-Changes in language triggers OnPropertyChanged causing the getter functions to be reevaluated.
+Changes in language trigger OnPropertyChanged causing the getter functions to be reevaluated.
+
 Uses CommunityToolkit.Mvvm.
 
 # maui-localize-ext
@@ -29,12 +29,23 @@ Uses CommunityToolkit.Mvvm.
 Implements localization using both MVVM and the Microsoft Localization extension.
 Resource strings are exposed via an IStringLocalizer in the ViewModel.
 Bindings are directly with the IStringLocalizer and exposed in XAML.
-Changes in language triggers OnPropertyChanged on the IStringLocalizer causing the strings to be reevaluated.
+Changes in language trigger OnPropertyChanged on the IStringLocalizer causing the strings to be reevaluated.
+
 Uses CommunityToolkit.Mvvm and Microsoft.Extensions.Localization.
 
 # maui-localize-lm
 
 Implements a LocalizationManager which blackboxes both the IStringLocalizer and language changes.
 Property binding is on both LocalizationManager "Culture" and "Item".
-Changes in language will trigger OnPropertyChanged on "Item" causing the strings to be reevaluated.
+
+Changes in language will trigger OnPropertyChanged on "Item" causing the strings to be re-evaluated.
+
+Implements markup extensions Localize and LocalizeBinding so that localization is moved to XAML.
+
+Uses CommunityToolkit.Mvvm and Microsoft.Extensions.Localization.
+
+# maui-localize-di
+
+Implements a LocalizationManager singleton using Dependency Injection.
+
 Uses CommunityToolkit.Mvvm and Microsoft.Extensions.Localization.
