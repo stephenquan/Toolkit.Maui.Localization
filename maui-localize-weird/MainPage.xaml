@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resx="clr-namespace:maui_localize_weird.Resources.Strings"
+             xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
+             xmlns:i18n="clr-namespace:Toolkit.Maui.Localization"
+             x:Class="maui_localize_weird.MainPage"
+             Title="{Binding [TITLE_MAIN]}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <i18n:StringFormatConverter x:Key="StringFormatConverter"/>
+            <i18n:PluralConverter x:Key="PluralConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="{Binding [LBL_HELLO]}"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+            
+            <Label
+                Text="{Binding [LBL_WELCOME]}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="CounterBtn"
+                Text="{MultiBinding
+                          {Binding Count},
+                          {Binding [STR_CLICKED_N_TIMES]},
+                          {Binding [STR_CLICKED_1_TIME]},
+                          {Binding [STR_CLICK_ME]},
+                          Converter={x:StaticResource PluralConverter}}"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+
+            <CollectionView
+                x:Name="culturesView"
+                ItemsSource="{Binding Cultures}"
+                ItemsLayout="HorizontalList"
+                SelectionMode="Single"
+                SelectedItem="{Binding LM.Culture}"
+                SelectionChangedCommand="{Binding SetCultureCommand}"
+                SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference culturesView}}"
+                FlowDirection="LeftToRight"
+                HorizontalOptions="Center">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type glob:CultureInfo}">
+                        <VerticalStackLayout>
+                        <ImageButton
+                            Source="{Binding TwoLetterISOLanguageName,StringFormat='flag_{0}.png'}"
+                            WidthRequest="48"
+                            HeightRequest="48"
+                            IsEnabled="False"
+                            Padding="4"/>
+                            <Label Text="{Binding LCID}"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label
+                Text="{Binding LM.Culture.NativeName}"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

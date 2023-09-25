@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "maui-localize-lm", "maui-lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "maui-localize-di", "maui-localize-di\maui-localize-di.csproj", "{CFD5BCB5-111D-4FB1-967A-9485D2225AA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "maui-localize-weird", "maui-localize-weird\maui-localize-weird.csproj", "{C5DD3BB3-6D4B-4713-8C16-89F4EEF0AB17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,12 @@ Global
 		{CFD5BCB5-111D-4FB1-967A-9485D2225AA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFD5BCB5-111D-4FB1-967A-9485D2225AA4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CFD5BCB5-111D-4FB1-967A-9485D2225AA4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C5DD3BB3-6D4B-4713-8C16-89F4EEF0AB17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5DD3BB3-6D4B-4713-8C16-89F4EEF0AB17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5DD3BB3-6D4B-4713-8C16-89F4EEF0AB17}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C5DD3BB3-6D4B-4713-8C16-89F4EEF0AB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5DD3BB3-6D4B-4713-8C16-89F4EEF0AB17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5DD3BB3-6D4B-4713-8C16-89F4EEF0AB17}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
