@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace maui_localize_weird
+namespace Toolkit.Maui.Localization.Sample
 {
     public class Program
     {

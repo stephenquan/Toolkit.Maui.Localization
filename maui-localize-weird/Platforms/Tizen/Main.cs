@@ -2,7 +2,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using System;
 
-namespace maui_localize_weird
+namespace Toolkit.Maui.Localization.Sample
 {
     internal class Program : MauiApplication
     {

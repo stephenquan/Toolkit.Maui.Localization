@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace maui_localize_weird
+namespace Toolkit.Maui.Localization.Sample
 {
     [Application]
     public class MainApplication : MauiApplication

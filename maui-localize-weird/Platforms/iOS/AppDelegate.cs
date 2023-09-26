@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace maui_localize_weird
+namespace Toolkit.Maui.Localization.Sample
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

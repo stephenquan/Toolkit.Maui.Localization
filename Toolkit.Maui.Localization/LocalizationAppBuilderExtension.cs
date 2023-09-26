@@ -9,8 +9,9 @@ namespace Toolkit.Maui.Localization;
 
 public static class LocalizationAppBuilderExtension
 {
-    public static MauiAppBuilder UseToolkitMauiLocalization(this MauiAppBuilder builder)
+    public static MauiAppBuilder UseToolkitMauiLocalization<TStringResource>(this MauiAppBuilder builder)
     {
+        LocalizationManager.DefaultStringResource = typeof(TStringResource);
         builder.Services.AddSingleton<LocalizationManager>();
         return builder;
     }

@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="maui_localize_weird.WinUI.App"
+    x:Class="Toolkit.Maui.Localization.Sample.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:maui_localize_weird.WinUI">
+    xmlns:local="using:Toolkit.Maui.Localization.Sample.WinUI">
 
 </maui:MauiWinUIApplication>

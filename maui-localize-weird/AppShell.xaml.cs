@@ -1,4 +1,4 @@
-﻿namespace maui_localize_weird
+﻿namespace Toolkit.Maui.Localization.Sample
 {
     public partial class AppShell : Shell
     {

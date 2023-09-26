@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace maui_localize_weird.Resources.Strings {
+namespace Toolkit.Maui.Localization.Sample.Resources.Strings {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace maui_localize_weird.Resources.Strings {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("maui_localize_weird.Resources.Strings.AppStrings", typeof(AppStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Toolkit.Maui.Localization.Sample.Resources.Strings.AppStrings", typeof(AppStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
