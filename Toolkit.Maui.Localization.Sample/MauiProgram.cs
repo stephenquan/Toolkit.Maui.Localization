@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Toolkit.Maui.Localization;
 using Toolkit.Maui.Localization.Sample.Resources.Strings;
 
 namespace Toolkit.Maui.Localization.Sample
@@ -21,7 +20,6 @@ namespace Toolkit.Maui.Localization.Sample
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-            builder.Services.AddLocalization();
             builder.Services.AddTransient<MainPage>();
             return builder.Build();
         }
