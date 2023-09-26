@@ -68,7 +68,7 @@ public partial class MainPage : ContentPage
         SemanticProperties.Hint="Counts the number of times you click"
         Clicked="OnCounterClicked"
         HorizontalOptions="Center" />
-```xaml
+```
 
 ## StringFormatConverter
 
@@ -79,8 +79,8 @@ public partial class MainPage : ContentPage
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!-- STR_CONVERSE is a string resource that contains `{0} says: "{1}"` -->
-    <!-- `Name`, `Greeting` are strings that contain `"Jack"` and `"Hello"` respectively. -->
+    <!-- STR_CONVERSE is a string resource that contains: {0} says: "{1}" -->
+    <!-- Name and Greeting are strings that contain "Jack" and "Hello" respectively. -->
     <Label
         Text="{MultiBinding
                    {Binding Name},
