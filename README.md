@@ -12,6 +12,7 @@ The universal steps required to localize an app are:
 
 ## Using Toolkit.Maui.Localization
 
+This is a wrapper on `Microsoft.Extensions.Localization` NuGet package.
 Call `UseToolkitMauiLocalization` in your `MainProgram.cs` and nominate your default string resource:
 
 ```c#
@@ -68,3 +69,22 @@ public partial class MainPage : ContentPage
         Clicked="OnCounterClicked"
         HorizontalOptions="Center" />
 ```xaml
+
+## StringFormatConverter
+
+```xaml
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <i18n:StringFormatConverter x:Key="StringFormatConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- STR_CONVERSE is a string resource that contains `{0} says: "{1}"` -->
+    <!-- `Name`, `Greeting` are strings that contain `"Jack"` and `"Hello"` respectively. -->
+    <Label
+        Text="{MultiBinding
+                   {Binding Name},
+                   {Binding Greeting},
+                   {i18n:Localize STR_CONVERSE},
+                   Converter={x:StaticResource StringFormatConverter}}" />
+```
