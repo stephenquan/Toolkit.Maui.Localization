@@ -1,6 +1,8 @@
-# maui-localize-test
+# Toolkit.Maui.Localization
 
-The steps required to localize an app are:
+## Introduction
+
+The universal steps required to localize an app are:
  1. Create string Resource files with the convention:
       - Resources/Strings/filename.resx
       - Resources/Strings/filename.[additionalLanguage1].resx
@@ -8,44 +10,61 @@ The steps required to localize an app are:
  2. Consume the resource strings in your app
  3. Optional set CultureInfo.CurrentUICulture and reload resource stings
 
-To demonstrate, the following are localized versions of the MAUI starter app:
+## Using Toolkit.Maui.Localization
 
-# maui-localize-resx
+Call `UseToolkitMauiLocalization` in your `MainProgram.cs` and nominate your default string resource:
 
-Demonstrates how to refer to the resource strings directly in the XAML.
-However, in the code behind, we react to changes in language and rewrite all text fields.
+```c#
+var builder = MauiApp.CreateBuilder();
+builder
+    .UseMauiApp<App>()
+    .UseToolkitMauiLocalization<AppStrings>()
+```
 
-# maui-localize-mvvm
+## Obtain LocalizationManager singleton via constructor injection
 
-Implements localization using MVVM.
-Resource strings are exposed via getter functions in the ViewModel.
-Those strings are linked to controls via the Binding markup extension in XAML.
-Changes in language trigger OnPropertyChanged causing the getter functions to be reevaluated.
+```c#
+public partial class MainPage : ContentPage
+{
+    public LocalizationManager LM { get; }
+    public MainPage(LocalizationManager LM)
+    {
+        this.LM = LM;
+    }
+}
+```
 
-Uses CommunityToolkit.Mvvm.
+## For ease of use in XAML, recommend i18n namespace
 
-# maui-localize-ext
+```xaml
+<ContentPage xmlns:i18n="clr-namespace:Toolkit.Maui.Localization;assembly=Toolkit.Maui.Localization">
+```
 
-Implements localization using both MVVM and the Microsoft Localization extension.
-Resource strings are exposed via an IStringLocalizer in the ViewModel.
-Bindings are directly with the IStringLocalizer and exposed in XAML.
-Changes in language trigger OnPropertyChanged on the IStringLocalizer causing the strings to be reevaluated.
+## Localize markup extension
 
-Uses CommunityToolkit.Mvvm and Microsoft.Extensions.Localization.
+```xaml
+<!-- LBL_HELLO is a string resource containing "Hello, World!" -->
+<Label Text="{i18n:Localize LBL_HELLO}"/>
+```
 
-# maui-localize-lm
+## PluralConverter
 
-Implements a LocalizationManager which blackboxes both the IStringLocalizer and language changes.
-Property binding is on both LocalizationManager "Culture" and "Item".
+```xaml
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <i18n:PluralConverter x:Key="PluralConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-Changes in language will trigger OnPropertyChanged on "Item" causing the strings to be re-evaluated.
-
-Implements markup extensions Localize and LocalizeBinding so that localization is moved to XAML.
-
-Uses CommunityToolkit.Mvvm and Microsoft.Extensions.Localization.
-
-# maui-localize-di
-
-Implements a LocalizationManager singleton using Dependency Injection.
-
-Uses CommunityToolkit.Mvvm and Microsoft.Extensions.Localization.
+    <Button
+        x:Name="CounterBtn"
+        Text="{MultiBinding
+                   {Binding Count},
+                   {i18n:Localize STR_CLICKED_N_TIMES},
+                   {i18n:Localize STR_CLICKED_1_TIME},
+                   {i18n:Localize STR_CLICK_ME},
+                   Converter={x:StaticResource PluralConverter}}"
+        SemanticProperties.Hint="Counts the number of times you click"
+        Clicked="OnCounterClicked"
+        HorizontalOptions="Center" />
+```xaml
