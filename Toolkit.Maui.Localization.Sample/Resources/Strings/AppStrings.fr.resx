@@ -133,7 +133,7 @@
     <value>Cliquez ici</value>
   </data>
   <data name="STR_EXCHANGE_RATE" xml:space="preserve">
-    <value>{0:C} est {1:0.00} USD</value>
+    <value>{0:0.00} USD est {1:C}</value>
   </data>
   <data name="TITLE_MAIN" xml:space="preserve">
     <value>Accueil</value>

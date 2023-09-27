@@ -93,7 +93,7 @@
 
             <Label
                 Text="{MultiBinding
-                          {Binding LocalMoney},
+                          {Binding OneDollar},
                           {Binding ExchangeRate},
                           {i18n:Localize STR_EXCHANGE_RATE},
                           Converter={x:StaticResource StringFormatConverter}}" />

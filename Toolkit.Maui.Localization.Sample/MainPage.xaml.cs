@@ -10,18 +10,18 @@ public partial class MainPage : ContentPage
     public LocalizationManager LM { get; }
     public IList<CultureInfo> Cultures { get; }
 
-    public decimal LocalMoney
+    public decimal OneDollar
         => 1.0m;
 
     public decimal ExchangeRate
         => LM.Culture.Name switch
         {
-            "en-GB" => 1.21m,
+            "en-GB" => 0.82m,
             "en-US" => 1.0m,
-            "fr-FR" => 1.06m,
-            "de-DE" => 1.06m,
-            "zh-CN" => 0.14m,
-            "ar-AE" => 0.27m,
+            "fr-FR" => 0.95m,
+            "de-DE" => 0.95m,
+            "zh-CN" => 7.30m,
+            "ar-AE" => 3.67m,
             _ => 0.00m
         };
 

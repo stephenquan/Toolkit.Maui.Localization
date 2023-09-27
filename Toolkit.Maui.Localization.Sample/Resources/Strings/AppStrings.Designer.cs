@@ -106,7 +106,7 @@ namespace Toolkit.Maui.Localization.Sample.Resources.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:C} is {1:0.00} USD.
+        ///   Looks up a localized string similar to {0:0.00} USD is {1:C}.
         /// </summary>
         internal static string STR_EXCHANGE_RATE {
             get {
