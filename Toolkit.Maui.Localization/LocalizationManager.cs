@@ -31,6 +31,7 @@ public class LocalizationManager : INotifyPropertyChanged
             CultureChanged?.Invoke(this, value);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FlowDirection)));
             FlowDirectionChanged?.Invoke(this, FlowDirection);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RotationY)));
         }
     }
 
@@ -38,6 +39,11 @@ public class LocalizationManager : INotifyPropertyChanged
          => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
             ? FlowDirection.RightToLeft
             : FlowDirection.LeftToRight;
+
+    public double RotationY
+         => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
+            ? 180
+            : 0;
 
     public ICommand SetCultureCommand { get; }
     public void SetCulture(CultureInfo value)
