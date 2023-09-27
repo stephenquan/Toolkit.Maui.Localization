@@ -4,8 +4,11 @@ internal static class ServiceHelper
 {
     public static TService GetService<TService>()
         => Current.GetService<TService>();
+
+#nullable enable
     public static object? GetService(Type serviceType)
         => Current.GetService(serviceType);
+#nullable disable
 
     private static IServiceProvider Current =>
 #if WINDOWS

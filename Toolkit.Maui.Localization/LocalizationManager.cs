@@ -14,8 +14,6 @@ public class LocalizationManager : INotifyPropertyChanged
     public static IStringLocalizer GetLocalizer(Type StringResource = null)
         => (IStringLocalizer)ServiceHelper.GetService(typeof(IStringLocalizer<>).MakeGenericType(new Type[] { StringResource ?? DefaultStringResource }));
 
-    public event EventHandler<CultureInfo> CultureChanged;
-
     public CultureInfo Culture
     {
         get => CultureInfo.CurrentUICulture;
@@ -31,8 +29,15 @@ public class LocalizationManager : INotifyPropertyChanged
             CultureInfo.CurrentCulture = value;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Culture)));
             CultureChanged?.Invoke(this, value);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FlowDirection)));
+            FlowDirectionChanged?.Invoke(this, FlowDirection);
         }
     }
+
+    public FlowDirection FlowDirection
+         => CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
+            ? FlowDirection.RightToLeft
+            : FlowDirection.LeftToRight;
 
     public ICommand SetCultureCommand { get; }
     public void SetCulture(CultureInfo value)
@@ -46,4 +51,6 @@ public class LocalizationManager : INotifyPropertyChanged
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
+    public event EventHandler<CultureInfo> CultureChanged;
+    public event EventHandler<FlowDirection> FlowDirectionChanged;
 }
