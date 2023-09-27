@@ -59,15 +59,31 @@
                 SelectedItem="{Binding LM.Culture}"
                 SelectionChangedCommand="{Binding LM.SetCultureCommand}"
                 SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference culturesView}}"
-                FlowDirection="LeftToRight" >
+                FlowDirection="LeftToRight"
+                HorizontalOptions="Center" >
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="{x:Type glob:CultureInfo}">
-                        <ImageButton
-                            Source="{Binding LCID, StringFormat='flag_{0}.png'}"
-                            WidthRequest="60"
-                            HeightRequest="40"
-                            IsEnabled="False"
-                            Padding="4"/>
+                        <Frame
+                            BorderColor="Transparent">
+                            <Image
+                                Source="{Binding LCID, StringFormat='flag_{0}.png'}"
+                                WidthRequest="45"
+                                HeightRequest="30" />
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="LightSkyBlue"></Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
