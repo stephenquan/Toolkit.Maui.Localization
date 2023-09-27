@@ -133,7 +133,7 @@
     <value>点击我</value>
   </data>
   <data name="STR_EXCHANGE_RATE" xml:space="preserve">
-    <value>{0:0.00}美元 是 {1:C}</value>
+    <value>{0:0.00} 美元 是 {1:C}</value>
   </data>
   <data name="STR_TODAY_IS" xml:space="preserve">
     <value>今天是 {0}</value>
