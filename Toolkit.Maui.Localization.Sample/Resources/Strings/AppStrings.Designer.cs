@@ -115,6 +115,15 @@ namespace Toolkit.Maui.Localization.Sample.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Today is {0}.
+        /// </summary>
+        internal static string STR_TODAY_IS {
+            get {
+                return ResourceManager.GetString("STR_TODAY_IS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         internal static string TITLE_MAIN {

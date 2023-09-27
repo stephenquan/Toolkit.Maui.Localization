@@ -98,6 +98,9 @@
                           {i18n:Localize STR_EXCHANGE_RATE},
                           Converter={x:StaticResource StringFormatConverter}}" />
 
+            <Label
+                Text="{i18n:LocalizeBinding CurrentDateTime, LocalizeFormat=STR_TODAY_IS}" />
+
         </VerticalStackLayout>
         
     </ScrollView>

@@ -10,6 +10,12 @@ public partial class MainPage : ContentPage
     public LocalizationManager LM { get; }
     public IList<CultureInfo> Cultures { get; }
 
+    public int Count
+    {
+        get => (int)GetValue(CountProperty);
+        set => SetValue(CountProperty, value);
+    }
+
     public decimal OneDollar
         => 1.0m;
 
@@ -25,11 +31,10 @@ public partial class MainPage : ContentPage
             _ => 0.00m
         };
 
-    public int Count
-    {
-        get => (int)GetValue(CountProperty);
-        set => SetValue(CountProperty, value);
-    }
+    public DateTime CurrentDateTime
+        => DateTime.Now;
+
+    private IDispatcherTimer _timer;
 
     public MainPage(LocalizationManager LM)
     {
@@ -38,6 +43,11 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         BindingContext = this;
         LM.CultureChanged += LM_CultureChanged;
+
+        _timer = App.Current.Dispatcher.CreateTimer();
+        _timer.Interval = TimeSpan.FromMilliseconds(1000);
+        _timer.Tick += (s, e) => OnPropertyChanged(nameof(CurrentDateTime));
+        _timer.Start();
     }
 
     ~MainPage()
