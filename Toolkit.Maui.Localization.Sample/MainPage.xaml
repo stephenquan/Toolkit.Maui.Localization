@@ -91,6 +91,13 @@
             <Label
                 Text="{Binding LM.Culture.NativeName}"/>
 
+            <Label
+                Text="{MultiBinding
+                          {Binding LocalMoney},
+                          {Binding ExchangeRate},
+                          {i18n:Localize STR_EXCHANGE_RATE},
+                          Converter={x:StaticResource StringFormatConverter}}" />
+
         </VerticalStackLayout>
         
     </ScrollView>

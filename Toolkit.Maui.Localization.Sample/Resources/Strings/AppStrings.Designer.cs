@@ -106,6 +106,15 @@ namespace Toolkit.Maui.Localization.Sample.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0:C} is {1:0.00} USD.
+        /// </summary>
+        internal static string STR_EXCHANGE_RATE {
+            get {
+                return ResourceManager.GetString("STR_EXCHANGE_RATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         internal static string TITLE_MAIN {

@@ -132,6 +132,9 @@
   <data name="STR_CLICK_ME" xml:space="preserve">
     <value>Cliquez ici</value>
   </data>
+  <data name="STR_EXCHANGE_RATE" xml:space="preserve">
+    <value>{0:C} est {1:0.00} USD</value>
+  </data>
   <data name="TITLE_MAIN" xml:space="preserve">
     <value>Accueil</value>
   </data>

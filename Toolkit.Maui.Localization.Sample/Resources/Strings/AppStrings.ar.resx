@@ -132,6 +132,9 @@
   <data name="STR_CLICK_ME" xml:space="preserve">
     <value>انقر عليّ</value>
   </data>
+  <data name="STR_EXCHANGE_RATE" xml:space="preserve">
+    <value>{0:C} هو {1:0.00} دولار أمريكي</value>
+  </data>
   <data name="TITLE_MAIN" xml:space="preserve">
     <value>الصفحة الرئيسية</value>
   </data>
