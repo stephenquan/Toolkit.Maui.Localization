@@ -123,22 +123,22 @@
   <data name="LBL_WELCOME" xml:space="preserve">
     <value>مرحبًا بك في واجهة تطبيق .NET متعددة المنصات</value>
   </data>
-  <data name="STR_CLICKED_1_TIME" xml:space="preserve">
+  <data name="BTN_CLICKED_1_TIME" xml:space="preserve">
     <value>تم النقر مرة واحدة</value>
   </data>
-  <data name="STR_CLICKED_N_TIMES" xml:space="preserve">
+  <data name="BTN_CLICKED_N_TIMES" xml:space="preserve">
     <value>تم النقر {0} مرات</value>
   </data>
-  <data name="STR_CLICK_ME" xml:space="preserve">
+  <data name="BTN_CLICK_ME" xml:space="preserve">
     <value>انقر عليّ</value>
   </data>
-  <data name="STR_EXCHANGE_RATE" xml:space="preserve">
+  <data name="LBL_EXCHANGE_RATE" xml:space="preserve">
     <value>{0:0.00}  دولار أمريكي هو  {1:C}</value>
   </data>
-  <data name="STR_TODAY_IS" xml:space="preserve">
+  <data name="LBL_TODAY_IS" xml:space="preserve">
     <value>اليوم هو {0}</value>
   </data>
-  <data name="TITLE_MAIN" xml:space="preserve">
+  <data name="PAG_HOME" xml:space="preserve">
     <value>الصفحة الرئيسية</value>
   </data>
 </root>

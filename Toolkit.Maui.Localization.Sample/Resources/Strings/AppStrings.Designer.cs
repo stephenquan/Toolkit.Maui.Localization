@@ -81,54 +81,54 @@ namespace Toolkit.Maui.Localization.Sample.Resources.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Click Me.
         /// </summary>
-        internal static string STR_CLICK_ME {
+        internal static string BTN_CLICK_ME {
             get {
-                return ResourceManager.GetString("STR_CLICK_ME", resourceCulture);
+                return ResourceManager.GetString("BTN_CLICK_ME", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Clicked 1 time.
         /// </summary>
-        internal static string STR_CLICKED_1_TIME {
+        internal static string BTN_CLICKED_1_TIME {
             get {
-                return ResourceManager.GetString("STR_CLICKED_1_TIME", resourceCulture);
+                return ResourceManager.GetString("BTN_CLICKED_1_TIME", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Clicked {0} times.
         /// </summary>
-        internal static string STR_CLICKED_N_TIMES {
+        internal static string BTN_CLICKED_N_TIMES {
             get {
-                return ResourceManager.GetString("STR_CLICKED_N_TIMES", resourceCulture);
+                return ResourceManager.GetString("BTN_CLICKED_N_TIMES", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0:0.00} USD is {1:C}.
         /// </summary>
-        internal static string STR_EXCHANGE_RATE {
+        internal static string LBL_EXCHANGE_RATE {
             get {
-                return ResourceManager.GetString("STR_EXCHANGE_RATE", resourceCulture);
+                return ResourceManager.GetString("LBL_EXCHANGE_RATE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Today is {0}.
         /// </summary>
-        internal static string STR_TODAY_IS {
+        internal static string LBL_TODAY_IS {
             get {
-                return ResourceManager.GetString("STR_TODAY_IS", resourceCulture);
+                return ResourceManager.GetString("LBL_TODAY_IS", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
-        internal static string TITLE_MAIN {
+        internal static string PAG_HOME {
             get {
-                return ResourceManager.GetString("TITLE_MAIN", resourceCulture);
+                return ResourceManager.GetString("PAG_HOME", resourceCulture);
             }
         }
     }

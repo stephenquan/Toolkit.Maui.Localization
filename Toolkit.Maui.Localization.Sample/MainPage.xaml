@@ -5,8 +5,8 @@
              xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
              xmlns:i18n="clr-namespace:Toolkit.Maui.Localization;assembly=Toolkit.Maui.Localization"
              x:Class="Toolkit.Maui.Localization.Sample.MainPage"
-             Title="{i18n:Localize TITLE_MAIN}"
-             FlowDirection="{i18n:LocalizeFlowDirection}">
+             Title="{i18n:Localize PAG_HOME}"
+             FlowDirection="{i18n:LocalizeLayout FlowDirection}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -26,7 +26,7 @@
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="200"
-                RotationY="{Binding LM.RotationY}"
+                RotationY="{i18n:LocalizeLayout RotationY}"
                 HorizontalOptions="Start" />
 
             <Label
@@ -44,9 +44,9 @@
                 x:Name="CounterBtn"
                 Text="{MultiBinding
                           {Binding Count},
-                          {i18n:Localize STR_CLICKED_N_TIMES},
-                          {i18n:Localize STR_CLICKED_1_TIME},
-                          {i18n:Localize STR_CLICK_ME},
+                          {i18n:Localize BTN_CLICKED_N_TIMES},
+                          {i18n:Localize BTN_CLICKED_1_TIME},
+                          {i18n:Localize BTN_CLICK_ME},
                           Converter={x:StaticResource PluralConverter}}"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
@@ -96,11 +96,11 @@
                 Text="{MultiBinding
                           {Binding OneDollar},
                           {Binding ExchangeRate},
-                          {i18n:Localize STR_EXCHANGE_RATE},
+                          {i18n:Localize LBL_EXCHANGE_RATE},
                           Converter={x:StaticResource StringFormatConverter}}" />
 
             <Label
-                Text="{i18n:LocalizeBinding CurrentDateTime, LocalizeFormat=STR_TODAY_IS}" />
+                Text="{i18n:LocalizeBinding CurrentDateTime, LocalizeFormat=LBL_TODAY_IS}" />
 
         </VerticalStackLayout>
         

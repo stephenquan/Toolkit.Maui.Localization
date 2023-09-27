@@ -123,22 +123,22 @@
   <data name="LBL_WELCOME" xml:space="preserve">
     <value>Bienvenue dans .NET Multi-platform App UI</value>
   </data>
-  <data name="STR_CLICKED_1_TIME" xml:space="preserve">
+  <data name="BTN_CLICKED_1_TIME" xml:space="preserve">
     <value>Cliqué 1 fois</value>
   </data>
-  <data name="STR_CLICKED_N_TIMES" xml:space="preserve">
+  <data name="BTN_CLICKED_N_TIMES" xml:space="preserve">
     <value>Cliqué {0} fois</value>
   </data>
-  <data name="STR_CLICK_ME" xml:space="preserve">
+  <data name="BTN_CLICK_ME" xml:space="preserve">
     <value>Cliquez ici</value>
   </data>
-  <data name="STR_EXCHANGE_RATE" xml:space="preserve">
+  <data name="LBL_EXCHANGE_RATE" xml:space="preserve">
     <value>{0:0.00} USD est {1:C}</value>
   </data>
-  <data name="STR_TODAY_IS" xml:space="preserve">
+  <data name="LBL_TODAY_IS" xml:space="preserve">
     <value>Aujourd'hui, c'est {0}</value>
   </data>
-  <data name="TITLE_MAIN" xml:space="preserve">
+  <data name="PAG_HOME" xml:space="preserve">
     <value>Accueil</value>
   </data>
 </root>
